@@ -93,7 +93,15 @@ class SqlHelper {
               ')',
             )
             .catchError(_error);
+        await _insertIntoCategoriesQuery(txn);
       },
     );
+  }
+
+  Future<void> _insertIntoCategoriesQuery(Transaction txn) async {
+    var categoryBactch = txn.batch();
+    categoryBactch.insert('categories', {'name': 'solidos'});
+    categoryBactch.insert('categories', {'name': 'liquidos'});
+    await categoryBactch.commit();
   }
 }
