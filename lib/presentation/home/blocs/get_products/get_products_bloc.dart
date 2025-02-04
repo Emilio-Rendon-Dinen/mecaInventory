@@ -9,8 +9,8 @@ part 'get_products_state.dart';
 class GetProductsBloc extends Bloc<GetProductsEvent, GetProductsState> {
   final GetProductsUseCase _useCase;
   GetProductsBloc({
-    required GetProductsUseCase useCases,
-  })  : _useCase = useCases,
+    required GetProductsUseCase useCase,
+  })  : _useCase = useCase,
         super(GetProductsInitial()) {
     on<GetProductsLoadingEvent>(_onGetProductsLoading);
   }
