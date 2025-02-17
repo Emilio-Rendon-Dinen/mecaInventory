@@ -26,26 +26,18 @@ class ProductModel extends Product {
   static List<Product> parseToList(dynamic json) {
     final List<Product> list = [];
 
-    if (json is Map<String, dynamic>) {
-      final dynamic data = json['results'];
-
-      if (data == null) {
-        return list;
-      }
-
-      if (data is List && data.isNotEmpty) {
-        for (final element in data) {
-          if (element is Map<String, dynamic>) {
-            final Product item = ProductModel.parse(element);
-
-            list.add(item);
-          }
+    if (json is List) {
+      // Si el json ya es una lista
+      for (final element in json) {
+        if (element is Map<String, dynamic>) {
+          final Product item = ProductModel.parse(element);
+          list.add(item);
         }
-      } else if (data is Map<String, dynamic>) {
-        final Product item = ProductModel.parse(data);
-
-        list.add(item);
       }
+    } else if (json is Map<String, dynamic>) {
+      // Si el json es un solo objeto
+      final Product item = ProductModel.parse(json);
+      list.add(item);
     }
 
     return list;

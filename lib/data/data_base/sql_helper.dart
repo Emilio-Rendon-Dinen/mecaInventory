@@ -77,6 +77,7 @@ class SqlHelper {
               'id INTEGER PRIMARY KEY AUTOINCREMENT, '
               'name TEXT NOT NULL, '
               'description TEXT, '
+              'cost TEXT, '
               'category_id INTEGER NOT NULL, '
               'FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE'
               ')',

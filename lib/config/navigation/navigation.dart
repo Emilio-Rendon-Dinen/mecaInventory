@@ -11,4 +11,12 @@ class Navigation {
       MaterialPageRoute(builder: (context) => screen),
     );
   }
+
+  static Future<dynamic> pushAndRemoveUntil({required BuildContext context, required Widget screen}) {
+    return Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+      (route) => false, // Eliminar todas las pantallas anteriores
+    );
+  }
 }

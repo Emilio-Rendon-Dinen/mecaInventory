@@ -4,11 +4,12 @@ import 'package:sqflite/sqflite.dart';
 
 class AddProductImplementation implements AddProductsRepository {
   @override
-  Future<void> addProduct(
-    String name,
-    String description,
-    int categoryId,
-  ) async {
+  Future<void> addProduct({
+    required String name,
+    String? description,
+    required int categoryId,
+    String? cost,
+  }) async {
     final database = await SqlHelper.instance.database;
 
     await database.transaction((txn) async {
@@ -17,6 +18,7 @@ class AddProductImplementation implements AddProductsRepository {
         {
           'name': name,
           'description': description,
+          'cost': cost,
           'category_id': categoryId,
         },
         conflictAlgorithm: ConflictAlgorithm.replace,

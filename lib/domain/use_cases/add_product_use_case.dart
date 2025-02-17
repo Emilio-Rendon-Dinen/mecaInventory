@@ -7,12 +7,18 @@ class AddProductUseCase {
     this._addProductsRepository,
   );
 
-  Future<void> addProduct(String name, String description, int categoryId) {
+  Future<void> addProduct({
+    required String name,
+    String? description,
+    required int categoryId,
+    String? cost,
+  }) {
     try {
       return _addProductsRepository.addProduct(
-        name,
-        description,
-        categoryId,
+        name: name,
+        description: description,
+        categoryId: categoryId,
+        cost: cost,
       );
     } catch (e) {
       rethrow;

@@ -6,11 +6,7 @@ part 'add_products_event.dart';
 part 'add_products_state.dart';
 
 class AddProductsBloc extends Bloc<AddProductEvent, AddProductsState> {
-  final AddProductUseCase _useCase;
-  AddProductsBloc({
-    required AddProductUseCase useCase,
-  })  : _useCase = useCase,
-        super(AddProductsInitial()) {
+  AddProductsBloc() : super(AddProductsInitial()) {
     on<AddProductLoadingEvent>(_onAddProductEvent);
   }
 
@@ -18,10 +14,11 @@ class AddProductsBloc extends Bloc<AddProductEvent, AddProductsState> {
     emit(const AddProductsLoading());
 
     try {
-      await _useCase.addProduct(
-        event.name,
-        event.description,
-        event.categoryId,
+      await event.useCase.addProduct(
+        name: event.name,
+        description: event.description,
+        categoryId: event.categoryId,
+        cost: event.cost,
       );
       emit(const AddProductsSuccess());
     } catch (e) {

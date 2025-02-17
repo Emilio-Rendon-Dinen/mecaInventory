@@ -1,7 +1,8 @@
 abstract class AddProductsRepository {
-  Future<void> addProduct(
-    String name,
-    String description,
-    int categoryId,
-  );
+  Future<void> addProduct({
+    required String name,
+    String? description,
+    required int categoryId,
+    String? cost,
+  });
 }

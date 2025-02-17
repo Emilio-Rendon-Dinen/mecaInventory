@@ -6,12 +6,16 @@ sealed class AddProductEvent {
 
 class AddProductLoadingEvent extends AddProductEvent {
   final String name;
-  final String description;
+  String? description;
   final int categoryId;
+  final String? cost;
+  final AddProductUseCase useCase;
 
   AddProductLoadingEvent({
     required this.name,
-    required this.description,
+    required this.useCase,
     required this.categoryId,
+    this.cost,
+    this.description,
   });
 }
