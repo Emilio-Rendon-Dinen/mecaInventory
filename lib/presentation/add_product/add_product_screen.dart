@@ -18,6 +18,7 @@ class AddProductScreen extends StatelessWidget {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
     final TextEditingController costController = TextEditingController();
+    final TextEditingController initialQuantityController = TextEditingController();
     return BlocProvider(
       create: (context) => AddProductsBloc(),
       child: BlocBuilder<AddProductsBloc, AddProductsState>(
@@ -72,6 +73,14 @@ class AddProductScreen extends StatelessWidget {
                             const Text("Costo de compra"),
                             TextFormField(
                               controller: costController,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            const Text("Cantidad inicial"),
+                            TextFormField(
+                              controller: initialQuantityController,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                               ),

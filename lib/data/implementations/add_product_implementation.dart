@@ -9,6 +9,7 @@ class AddProductImplementation implements AddProductsRepository {
     String? description,
     required int categoryId,
     String? cost,
+    String? initialQuantity,
   }) async {
     final database = await SqlHelper.instance.database;
 
@@ -19,6 +20,7 @@ class AddProductImplementation implements AddProductsRepository {
           'name': name,
           'description': description,
           'cost': cost,
+          'initial_quantity': initialQuantity,
           'category_id': categoryId,
         },
         conflictAlgorithm: ConflictAlgorithm.replace,

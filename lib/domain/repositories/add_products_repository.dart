@@ -4,5 +4,6 @@ abstract class AddProductsRepository {
     String? description,
     required int categoryId,
     String? cost,
+    String? initialQuantity,
   });
 }

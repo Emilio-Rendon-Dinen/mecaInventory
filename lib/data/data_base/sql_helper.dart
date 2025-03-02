@@ -78,6 +78,7 @@ class SqlHelper {
               'name TEXT NOT NULL, '
               'description TEXT, '
               'cost TEXT, '
+              'initial_quantity TEXT, '
               'category_id INTEGER NOT NULL, '
               'FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE'
               ')',

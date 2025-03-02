@@ -5,6 +5,7 @@ import 'package:meca_inventory/presentation/add_product/add_product_screen.dart'
 import 'package:meca_inventory/presentation/empty_products/empty_products_list.dart';
 import 'package:meca_inventory/presentation/home/blocs/get_products/get_products_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meca_inventory/presentation/home/widgets/product_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,15 +16,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-
-  static final List<Widget> _screens = <Widget>[
-    Container(
-      color: Colors.blue,
-    ),
-    const AddProductScreen(
-      isContent: true,
-    ),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -54,7 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 appBar: AppBar(
                   title: const Text('Meca inventario'),
                 ),
-                body: _screens[_selectedIndex],
+                body: _selectedIndex == 0
+                    ? ProductList(products: state.products)
+                    : const AddProductScreen(
+                        isContent: true,
+                      ),
                 bottomNavigationBar: BottomNavigationBar(
                   items: const <BottomNavigationBarItem>[
                     BottomNavigationBarItem(

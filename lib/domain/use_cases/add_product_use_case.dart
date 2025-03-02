@@ -12,6 +12,7 @@ class AddProductUseCase {
     String? description,
     required int categoryId,
     String? cost,
+    String? initialQuantity,
   }) {
     try {
       return _addProductsRepository.addProduct(
@@ -19,6 +20,7 @@ class AddProductUseCase {
         description: description,
         categoryId: categoryId,
         cost: cost,
+        initialQuantity: initialQuantity,
       );
     } catch (e) {
       rethrow;

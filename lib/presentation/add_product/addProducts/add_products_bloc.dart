@@ -19,6 +19,7 @@ class AddProductsBloc extends Bloc<AddProductEvent, AddProductsState> {
         description: event.description,
         categoryId: event.categoryId,
         cost: event.cost,
+        initialQuantity: event.initialQuantity,
       );
       emit(const AddProductsSuccess());
     } catch (e) {
