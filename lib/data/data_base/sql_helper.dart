@@ -78,7 +78,7 @@ class SqlHelper {
               'name TEXT NOT NULL, '
               'description TEXT, '
               'cost TEXT, '
-              'initial_quantity TEXT, '
+              'initial_quantity INTEGER NOT NULL, '
               'category_id INTEGER NOT NULL, '
               'FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE'
               ')',
@@ -87,7 +87,7 @@ class SqlHelper {
 
         await txn
             .execute(
-              'CREATE TABLE IF NOT EXISTS inventary ('
+              'CREATE TABLE IF NOT EXISTS inventory ('
               'id INTEGER PRIMARY KEY AUTOINCREMENT, '
               'product_id INTEGER NOT NULL, '
               'quantity INTEGER NOT NULl, '

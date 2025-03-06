@@ -80,6 +80,8 @@ class AddProductScreen extends StatelessWidget {
                             const SizedBox(height: 12),
                             const Text("Cantidad inicial"),
                             TextFormField(
+                              autofocus: true,
+                              keyboardType: const TextInputType.numberWithOptions(),
                               controller: initialQuantityController,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
@@ -97,11 +99,13 @@ class AddProductScreen extends StatelessWidget {
                               final String name = nameController.text;
                               final String description = descriptionController.text;
                               final String cost = costController.text;
+                              final dynamic initialQuantity = initialQuantityController.text;
                               context.read<AddProductsBloc>().add(AddProductLoadingEvent(
                                     name: name,
                                     description: description,
                                     cost: cost,
                                     categoryId: 1,
+                                    initialQuantity: initialQuantity,
                                     useCase: getIt.get<AddProductUseCase>(),
                                   ));
                             },

@@ -9,12 +9,12 @@ class AddProductImplementation implements AddProductsRepository {
     String? description,
     required int categoryId,
     String? cost,
-    String? initialQuantity,
+    required String initialQuantity,
   }) async {
     final database = await SqlHelper.instance.database;
 
     await database.transaction((txn) async {
-      await txn.insert(
+      int productId = await txn.insert(
         'products',
         {
           'name': name,
@@ -25,13 +25,23 @@ class AddProductImplementation implements AddProductsRepository {
         },
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
+
+      // Insertamos el inventario para el producto recién agregado
+      await txn.insert(
+        'inventory',
+        {
+          'product_id': productId,
+          'quantity': initialQuantity,
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
     });
   }
 }
 
 /*
-Iniciamos una transacción: Usamos database.transaction para 
+1-Iniciamos una transacción: Usamos database.transaction para 
 ejecutar varias operaciones de forma atómica. 
-Esto garantiza que si algo falla, nada se guarda.
-Manejo de conflictos: Usamos ConflictAlgorithm.replace para 
-reemplazar un producto si hay un conflicto (en caso de que el id ya exista). Puedes ajustar esta estrategia según tus necesidades.*/
+  -Esto garantiza que si algo falla, nada se guarda.
+2-Manejo de conflictos: Usamos ConflictAlgorithm.replace para 
+reemplazar un producto si hay un conflicto (en caso de que el id ya exista).*/

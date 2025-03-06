@@ -12,7 +12,7 @@ class AddProductUseCase {
     String? description,
     required int categoryId,
     String? cost,
-    String? initialQuantity,
+    required String initialQuantity,
   }) {
     try {
       return _addProductsRepository.addProduct(

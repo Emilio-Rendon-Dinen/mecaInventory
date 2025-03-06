@@ -9,7 +9,7 @@ class AddProductLoadingEvent extends AddProductEvent {
   String? description;
   final int categoryId;
   final String? cost;
-  final String? initialQuantity;
+  final String initialQuantity;
   final AddProductUseCase useCase;
 
   AddProductLoadingEvent({
@@ -17,7 +17,7 @@ class AddProductLoadingEvent extends AddProductEvent {
     required this.useCase,
     required this.categoryId,
     this.cost,
-    this.initialQuantity,
+    required this.initialQuantity,
     this.description,
   });
 }

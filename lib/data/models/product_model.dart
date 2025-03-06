@@ -7,6 +7,8 @@ class ProductModel extends Product {
     required super.categoryId,
     required super.name,
     required super.description,
+    required super.initialQuantity,
+    required super.cost,
   });
 
   /// Constructor nombrado que espera un [Map] con la información de una pelicula y crea una instancia de [Product].
@@ -14,11 +16,12 @@ class ProductModel extends Product {
   ProductModel.parse(
     Map<String, dynamic> json,
   ) : super(
-          id: json.getInteger('id'),
-          categoryId: json.getInteger('category_id'),
-          description: json.getString('description'),
-          name: json.getString('name'),
-        );
+            id: json.getInteger('id'),
+            categoryId: json.getInteger('category_id'),
+            description: json.getString('description'),
+            name: json.getString('name'),
+            cost: json.getString('cost'),
+            initialQuantity: json.getInteger('initial_quantity'));
 
   /// Parsea un [List] que representa la información de varias peliculas y retorna una lista de instancias de [Product].
   ///
