@@ -79,22 +79,13 @@ class SqlHelper {
               'description TEXT, '
               'cost TEXT, '
               'initial_quantity INTEGER NOT NULL, '
+              'current_quantity INTEGER NOT NULL, '
               'category_id INTEGER NOT NULL, '
               'FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE'
               ')',
             )
             .catchError(_error);
 
-        await txn
-            .execute(
-              'CREATE TABLE IF NOT EXISTS inventory ('
-              'id INTEGER PRIMARY KEY AUTOINCREMENT, '
-              'product_id INTEGER NOT NULL, '
-              'quantity INTEGER NOT NULl, '
-              'FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE'
-              ')',
-            )
-            .catchError(_error);
         await _insertIntoCategoriesQuery(txn);
       },
     );

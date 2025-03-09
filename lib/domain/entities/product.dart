@@ -5,6 +5,7 @@ class Product {
   final String cost;
   final int categoryId;
   final int initialQuantity;
+  final int currentQuantity;
 
   const Product({
     required this.id,
@@ -13,5 +14,6 @@ class Product {
     required this.cost,
     required this.description,
     required this.initialQuantity,
+    required this.currentQuantity,
   });
 }

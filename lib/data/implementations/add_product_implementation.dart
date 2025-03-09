@@ -13,29 +13,22 @@ class AddProductImplementation implements AddProductsRepository {
   }) async {
     final database = await SqlHelper.instance.database;
 
-    await database.transaction((txn) async {
-      int productId = await txn.insert(
-        'products',
-        {
-          'name': name,
-          'description': description,
-          'cost': cost,
-          'initial_quantity': initialQuantity,
-          'category_id': categoryId,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-
-      // Insertamos el inventario para el producto recién agregado
-      await txn.insert(
-        'inventory',
-        {
-          'product_id': productId,
-          'quantity': initialQuantity,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-    });
+    await database.transaction(
+      (txn) async {
+        await txn.insert(
+          'products',
+          {
+            'name': name,
+            'description': description,
+            'cost': cost,
+            'initial_quantity': initialQuantity,
+            'current_quantity': initialQuantity,
+            'category_id': categoryId,
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      },
+    );
   }
 }
 
