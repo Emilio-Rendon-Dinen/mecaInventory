@@ -26,23 +26,11 @@ class ProductCard extends StatelessWidget {
                 Text(
                   product.name,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'costo: ',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: product.cost, // Segunda parte del texto
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
+                Text(
+                  'Costo: ${product.cost}',
                 ),
                 Text(
-                  'cantidad: 0/${product.initialQuantity}',
+                  'cantidad: ${product.currentQuantity}/${product.initialQuantity}',
                   //style: Theme.of(context).textTheme.bodyMedium,
                 )
               ],

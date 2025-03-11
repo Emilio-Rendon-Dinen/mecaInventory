@@ -6,7 +6,7 @@ import 'package:meca_inventory/domain/use_cases/add_product_use_case.dart';
 import 'package:meca_inventory/presentation/add_product/addProducts/add_products_bloc.dart';
 import 'package:meca_inventory/presentation/home/home_screen.dart';
 
-class AddProductScreen extends StatelessWidget {
+class AddProductScreen extends StatefulWidget {
   final bool? isContent;
   const AddProductScreen({
     this.isContent,
@@ -14,11 +14,39 @@ class AddProductScreen extends StatelessWidget {
   });
 
   @override
+  State<AddProductScreen> createState() => _AddProductScreenState();
+}
+
+class _AddProductScreenState extends State<AddProductScreen> {
+  late final TextEditingController nameController;
+  late final TextEditingController descriptionController;
+  late final TextEditingController costController;
+  late final TextEditingController initialQuantityController;
+  // Al usar un GlobalKey<FormState>,
+  // puedes acceder al estado del formulario y llamar a métodos como
+  //  validate(), save(), o reset().
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    descriptionController = TextEditingController();
+    costController = TextEditingController();
+    initialQuantityController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    descriptionController.dispose();
+    costController.dispose();
+    initialQuantityController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController descriptionController = TextEditingController();
-    final TextEditingController costController = TextEditingController();
-    final TextEditingController initialQuantityController = TextEditingController();
     return BlocProvider(
       create: (context) => AddProductsBloc(),
       child: BlocBuilder<AddProductsBloc, AddProductsState>(
@@ -39,7 +67,7 @@ class AddProductScreen extends StatelessWidget {
             return Container();
           } else {
             return Scaffold(
-              appBar: isContent == true
+              appBar: widget.isContent == true
                   ? null
                   : AppBar(
                       title: const Text('Agrega tu primer producto'),
@@ -50,44 +78,79 @@ class AddProductScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Nombre"),
-                            TextFormField(
-                              controller: nameController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
+                        child: Form(
+                          key: _formKey, // Asignar la GlobalKey al Form
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Nombre"),
+                              TextFormField(
+                                controller: nameController,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor ingrese un nombre';
+                                  }
+                                  return null;
+                                },
                               ),
-                            ),
-                            const SizedBox(height: 12),
-                            const Text("Descripción"),
-                            TextFormField(
-                              controller: descriptionController,
-                              maxLines: 5,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
+                              const SizedBox(height: 12),
+                              const Text("Descripción"),
+                              TextFormField(
+                                controller: descriptionController,
+                                maxLines: 5,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor ingrese una descripción';
+                                  }
+                                  return null;
+                                },
                               ),
-                            ),
-                            const SizedBox(height: 12),
-                            const Text("Costo de compra"),
-                            TextFormField(
-                              controller: costController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
+                              const SizedBox(height: 12),
+                              const Text("Costo de compra"),
+                              TextFormField(
+                                controller: costController,
+                                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor ingrese un valor';
+                                  }
+                                  final n = num.tryParse(value);
+                                  if (n == null) {
+                                    return 'Por favor ingrese un número válido';
+                                  }
+                                  return null;
+                                },
                               ),
-                            ),
-                            const SizedBox(height: 12),
-                            const Text("Cantidad inicial"),
-                            TextFormField(
-                              autofocus: true,
-                              keyboardType: const TextInputType.numberWithOptions(),
-                              controller: initialQuantityController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
+                              const SizedBox(height: 12),
+                              const Text("Cantidad inicial"),
+                              TextFormField(
+                                keyboardType: const TextInputType.numberWithOptions(),
+                                controller: initialQuantityController,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor ingrese un valor';
+                                  }
+                                  final n = num.tryParse(value);
+                                  if (n == null) {
+                                    return 'Por favor ingrese un número válido';
+                                  }
+                                  return null;
+                                },
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Align(
@@ -96,18 +159,19 @@ class AddProductScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 16.0),
                           child: FloatingActionButton.extended(
                             onPressed: () {
-                              final String name = nameController.text;
-                              final String description = descriptionController.text;
-                              final String cost = costController.text;
-                              final dynamic initialQuantity = initialQuantityController.text;
-                              context.read<AddProductsBloc>().add(AddProductLoadingEvent(
-                                    name: name,
-                                    description: description,
-                                    cost: cost,
-                                    categoryId: 1,
-                                    initialQuantity: initialQuantity,
-                                    useCase: getIt.get<AddProductUseCase>(),
-                                  ));
+                              //Si el formulario es correcto
+                              if (_formKey.currentState?.validate() ?? false) {
+                                context.read<AddProductsBloc>().add(
+                                      AddProductLoadingEvent(
+                                        name: nameController.text,
+                                        description: descriptionController.text,
+                                        cost: costController.text,
+                                        categoryId: 1,
+                                        initialQuantity: initialQuantityController.text,
+                                        useCase: getIt.get<AddProductUseCase>(),
+                                      ),
+                                    );
+                              }
                             },
                             label: const Text("Agregar"),
                           ),
