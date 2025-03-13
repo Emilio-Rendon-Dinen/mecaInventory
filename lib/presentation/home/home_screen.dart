@@ -44,7 +44,17 @@ class _HomeScreenState extends State<HomeScreen> {
             } else {
               return Scaffold(
                 appBar: AppBar(
-                  title: const Text('Meca inventario'),
+                  title: const Text(
+                    'Meca inventario',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                  backgroundColor: Colors.black,
+                  elevation: 4,
                 ),
                 body: _selectedIndex == 0
                     ? ProductList(products: state.products)

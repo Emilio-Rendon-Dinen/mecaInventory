@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meca_inventory/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/config/navigation/navigation.dart';
@@ -70,7 +71,17 @@ class _AddProductScreenState extends State<AddProductScreen> {
               appBar: widget.isContent == true
                   ? null
                   : AppBar(
-                      title: const Text('Agrega tu primer producto'),
+                      title: const Text(
+                        'Agrega tu primer producto',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 2.0,
+                        ),
+                      ),
+                      backgroundColor: Colors.black,
+                      elevation: 4,
                     ),
               body: SafeArea(
                 child: Padding(
@@ -83,7 +94,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Nombre"),
+                              const Text(
+                                "Nombre",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               TextFormField(
                                 controller: nameController,
                                 decoration: const InputDecoration(
@@ -97,7 +113,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                 },
                               ),
                               const SizedBox(height: 12),
-                              const Text("Descripción"),
+                              const Text(
+                                "Descripción",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               TextFormField(
                                 controller: descriptionController,
                                 maxLines: 5,
@@ -112,10 +133,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                 },
                               ),
                               const SizedBox(height: 12),
-                              const Text("Costo de compra"),
+                              const Text(
+                                "Costo de compra",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               TextFormField(
                                 controller: costController,
-                                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                keyboardType: TextInputType.number,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
@@ -123,31 +149,45 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   if (value == null || value.isEmpty) {
                                     return 'Por favor ingrese un valor';
                                   }
-                                  final n = num.tryParse(value);
-                                  if (n == null) {
+                                  final cost = num.tryParse(value);
+                                  if (cost == 0) {
                                     return 'Por favor ingrese un número válido';
                                   }
                                   return null;
                                 },
                               ),
                               const SizedBox(height: 12),
-                              const Text("Cantidad inicial"),
+                              const Text(
+                                "Cantidad inicial",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               TextFormField(
-                                keyboardType: const TextInputType.numberWithOptions(),
+                                keyboardType: TextInputType.number,
                                 controller: initialQuantityController,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
+                                  if (value == null || value.isEmpty || value == 0) {
                                     return 'Por favor ingrese un valor';
                                   }
-                                  final n = num.tryParse(value);
-                                  if (n == null) {
+                                  final quantity = num.tryParse(value);
+                                  if (quantity == 0) {
                                     return 'Por favor ingrese un número válido';
                                   }
                                   return null;
                                 },
+                              ),
+                              const Text(
+                                "Foto del producto",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),
