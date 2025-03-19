@@ -5,19 +5,11 @@ sealed class AddProductEvent {
 }
 
 class AddProductLoadingEvent extends AddProductEvent {
-  final String name;
-  String? description;
-  final int categoryId;
-  final String? cost;
-  final String initialQuantity;
+  final ProductUIModel productUIModel;
   final AddProductUseCase useCase;
 
   AddProductLoadingEvent({
-    required this.name,
+    required this.productUIModel,
     required this.useCase,
-    required this.categoryId,
-    this.cost,
-    required this.initialQuantity,
-    this.description,
   });
 }

@@ -81,6 +81,7 @@ class SqlHelper {
               'initial_quantity INTEGER NOT NULL, '
               'current_quantity INTEGER NOT NULL, '
               'category_id INTEGER NOT NULL, '
+              'image BLOB, ' // Esto es igual a List<int>
               'FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE'
               ')',
             )

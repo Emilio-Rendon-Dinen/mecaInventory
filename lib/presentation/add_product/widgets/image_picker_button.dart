@@ -1,10 +1,15 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerButton extends StatefulWidget {
-  final Function(File pickedImage) onImagePicked;
+  final Function(
+    File pickedImage,
+    Uint8List bytes,
+  ) onImagePicked;
+
   const ImagePickerButton({
     required this.onImagePicked,
     super.key,
@@ -16,6 +21,8 @@ class ImagePickerButton extends StatefulWidget {
 
 class _ImagePickerButtonState extends State<ImagePickerButton> {
   File? _selectedImage;
+  Uint8List? _imageBytes;
+
   final ImagePicker _picker = ImagePicker();
 
   Future<void> _pickImage() async {
@@ -28,11 +35,16 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
       );
 
       if (pickedFile != null) {
+        final File imageFile = File(pickedFile.path);
+        // Convertir a Uint8List para la base de datos
+        final Uint8List bytes = await imageFile.readAsBytes();
+
         setState(() {
-          _selectedImage = File(pickedFile.path);
+          _selectedImage = imageFile;
+          _imageBytes = bytes;
         });
 
-        widget.onImagePicked(_selectedImage!);
+        widget.onImagePicked(imageFile, bytes);
       }
     } catch (e) {
       debugPrint('Error al seleccionar imagen: $e');
@@ -56,12 +68,14 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
                 color: Theme.of(context).colorScheme.secondaryContainer,
               ),
               child: Center(
-                child: Text(_selectedImage == null ? 'Seleccionar imagen' : 'Cambiar imagen'),
+                child: Text(
+                  _selectedImage == null ? 'Seleccionar imagen' : 'Cambiar imagen',
+                ),
               ),
             ),
           ),
         ),
-        if (_selectedImage != null)
+        if (_selectedImage != null || _imageBytes != null)
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -74,10 +88,15 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.file(
-                  _selectedImage!,
-                  fit: BoxFit.cover,
-                ),
+                child: _selectedImage != null
+                    ? Image.file(
+                        _selectedImage!,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.memory(
+                        _imageBytes!,
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
           ),

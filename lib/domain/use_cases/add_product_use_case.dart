@@ -1,3 +1,4 @@
+import 'package:meca_inventory/domain/entities/product.dart';
 import 'package:meca_inventory/domain/repositories/add_products_repository.dart';
 
 class AddProductUseCase {
@@ -8,19 +9,11 @@ class AddProductUseCase {
   );
 
   Future<void> addProduct({
-    required String name,
-    String? description,
-    required int categoryId,
-    String? cost,
-    required String initialQuantity,
+    required Product product,
   }) {
     try {
       return _addProductsRepository.addProduct(
-        name: name,
-        description: description,
-        categoryId: categoryId,
-        cost: cost,
-        initialQuantity: initialQuantity,
+        product: product,
       );
     } catch (e) {
       rethrow;

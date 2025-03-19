@@ -1,29 +1,30 @@
 import 'package:meca_inventory/data/data_base/sql_helper.dart';
+import 'package:meca_inventory/data/models/product_model.dart';
+import 'package:meca_inventory/domain/entities/product.dart';
 import 'package:meca_inventory/domain/repositories/add_products_repository.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AddProductImplementation implements AddProductsRepository {
   @override
   Future<void> addProduct({
-    required String name,
-    String? description,
-    required int categoryId,
-    String? cost,
-    required String initialQuantity,
+    required Product product,
   }) async {
     final database = await SqlHelper.instance.database;
+
+    final productModel = ProductModel.fromProduct(product);
 
     await database.transaction(
       (txn) async {
         await txn.insert(
           'products',
           {
-            'name': name,
-            'description': description,
-            'cost': cost,
-            'initial_quantity': initialQuantity,
-            'current_quantity': initialQuantity,
-            'category_id': categoryId,
+            'name': productModel.name,
+            'description': productModel.description,
+            'cost': productModel.cost,
+            'initial_quantity': productModel.initialQuantity,
+            'current_quantity': productModel.initialQuantity,
+            'category_id': productModel.categoryId,
+            'image': productModel.image,
           },
           conflictAlgorithm: ConflictAlgorithm.replace,
         );

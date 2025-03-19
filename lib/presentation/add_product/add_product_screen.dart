@@ -8,6 +8,7 @@ import 'package:meca_inventory/domain/use_cases/add_product_use_case.dart';
 import 'package:meca_inventory/presentation/add_product/addProducts/add_products_bloc.dart';
 import 'package:meca_inventory/presentation/add_product/widgets/image_picker_button.dart';
 import 'package:meca_inventory/presentation/home/home_screen.dart';
+import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
 class AddProductScreen extends StatefulWidget {
   final bool? isContent;
@@ -25,6 +26,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   late final TextEditingController descriptionController;
   late final TextEditingController costController;
   late final TextEditingController initialQuantityController;
+  Uint8List? productImage;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -192,7 +194,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             ),
                           ),
                           ImagePickerButton(
-                            onImagePicked: (File pickedImage) {},
+                            onImagePicked: (File file, Uint8List bytes) {
+                              // Guardar los bytes para usarlos al guardar el producto en la base de datos
+                              productImage = bytes;
+                            },
                           ),
                         ],
                       ),
@@ -207,11 +212,16 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     if (_formKey.currentState?.validate() ?? false) {
                       context.read<AddProductsBloc>().add(
                             AddProductLoadingEvent(
-                              name: nameController.text,
-                              description: descriptionController.text,
-                              cost: costController.text,
-                              categoryId: 1,
-                              initialQuantity: initialQuantityController.text,
+                              productUIModel: ProductUIModel(
+                                name: nameController.text,
+                                description: descriptionController.text,
+                                cost: costController.text,
+                                initialQuantity: int.tryParse(initialQuantityController.text) ?? 0,
+                                image: productImage,
+                                categoryId: 0,
+                                id: null,
+                                currentQuantity: null,
+                              ),
                               useCase: getIt.get<AddProductUseCase>(),
                             ),
                           );

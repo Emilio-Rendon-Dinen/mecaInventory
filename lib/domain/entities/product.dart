@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class Product {
   final int id;
   final String name;
@@ -6,6 +8,7 @@ class Product {
   final int categoryId;
   final int initialQuantity;
   final int currentQuantity;
+  final Uint8List image;
 
   const Product({
     required this.id,
@@ -15,5 +18,6 @@ class Product {
     required this.description,
     required this.initialQuantity,
     required this.currentQuantity,
+    required this.image,
   });
 }

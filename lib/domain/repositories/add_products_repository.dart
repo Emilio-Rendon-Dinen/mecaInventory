@@ -1,9 +1,7 @@
+import 'package:meca_inventory/domain/entities/product.dart';
+
 abstract class AddProductsRepository {
   Future<void> addProduct({
-    required String name,
-    String? description,
-    required int categoryId,
-    String? cost,
-    required String initialQuantity,
+    required Product product,
   });
 }

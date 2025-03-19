@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meca_inventory/domain/use_cases/add_product_use_case.dart';
+import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 import 'package:meta/meta.dart';
 
 part 'add_products_event.dart';
@@ -15,11 +16,7 @@ class AddProductsBloc extends Bloc<AddProductEvent, AddProductsState> {
 
     try {
       await event.useCase.addProduct(
-        name: event.name,
-        description: event.description,
-        categoryId: event.categoryId,
-        cost: event.cost,
-        initialQuantity: event.initialQuantity,
+        product: event.productUIModel.toDomain(),
       );
       emit(const AddProductsSuccess());
     } catch (e) {
