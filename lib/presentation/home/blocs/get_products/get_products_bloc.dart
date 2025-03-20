@@ -2,24 +2,24 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/domain/entities/product.dart';
 import 'package:meca_inventory/domain/use_cases/get_products_use_case.dart';
+import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
 part 'get_products_event.dart';
 part 'get_products_state.dart';
 
 class GetProductsBloc extends Bloc<GetProductsEvent, GetProductsState> {
-  final GetProductsUseCase _useCase;
-  GetProductsBloc({
-    required GetProductsUseCase useCase,
-  })  : _useCase = useCase,
-        super(GetProductsInitial()) {
+  GetProductsBloc() : super(GetProductsInitial()) {
     on<GetProductsLoadingEvent>(_onGetProductsLoading);
   }
 
   Future<void> _onGetProductsLoading(GetProductsLoadingEvent event, Emitter<GetProductsState> emit) async {
-    List<Product> products = [];
+    List<ProductUIModel> products = [];
     emit(const GetProductsLoading());
     try {
-      products = await _useCase.getProducts();
+      List<Product> productsFromDomain = await event.useCase.getProducts();
+      for (var item in productsFromDomain) {
+        products.add(ProductUIModel.fromDomain(item));
+      }
       emit(GetProductsSuccess(products: products));
     } catch (e) {
       emit(GetProductsError(error: e));

@@ -28,9 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<GetProductsBloc>(
-          create: (context) => GetProductsBloc(useCase: getIt.get<GetProductsUseCase>())
+          create: (context) => GetProductsBloc()
             ..add(
-              const GetProductsLoadingEvent(),
+              GetProductsLoadingEvent(useCase: getIt.get<GetProductsUseCase>()),
             ),
         ),
       ],

@@ -12,7 +12,7 @@ final class GetProductsLoading extends GetProductsState {
 }
 
 final class GetProductsSuccess extends GetProductsState {
-  final List<Product> products;
+  final List<ProductUIModel> products;
   const GetProductsSuccess({
     required this.products,
   });

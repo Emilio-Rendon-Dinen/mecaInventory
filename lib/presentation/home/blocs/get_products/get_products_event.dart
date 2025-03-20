@@ -9,5 +9,8 @@ final class GetProductsLoadedEvent extends GetProductsEvent {
 }
 
 final class GetProductsLoadingEvent extends GetProductsEvent {
-  const GetProductsLoadingEvent();
+  final GetProductsUseCase useCase;
+  const GetProductsLoadingEvent({
+    required this.useCase,
+  });
 }

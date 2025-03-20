@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meca_inventory/domain/entities/product.dart';
+import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
 class ProductCard extends StatelessWidget {
-  final Product product;
+  final ProductUIModel product;
   const ProductCard({required this.product, super.key});
 
   @override
@@ -10,14 +10,36 @@ class ProductCard extends StatelessWidget {
     return Card(
       elevation: 20,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 50,
-              height: 50,
-              color: Colors.grey,
+              width: 100,
+              height: 100,
+              margin: const EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: product.hasImage
+                    ? Image.memory(
+                        product.image!,
+                        fit: BoxFit.cover,
+                      )
+                    : Container(
+                        color: Colors.grey[300],
+                        width: 100,
+                        height: 100,
+                        child: const Center(
+                          child: Icon(
+                            Icons.image,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+              ),
             ),
             const SizedBox(width: 8),
             Column(
@@ -31,7 +53,6 @@ class ProductCard extends StatelessWidget {
                 ),
                 Text(
                   'cantidad: ${product.currentQuantity}/${product.initialQuantity}',
-                  //style: Theme.of(context).textTheme.bodyMedium,
                 )
               ],
             )
