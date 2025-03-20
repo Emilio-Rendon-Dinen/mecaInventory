@@ -218,7 +218,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                 cost: costController.text,
                                 initialQuantity: int.tryParse(initialQuantityController.text) ?? 0,
                                 image: productImage,
-                                categoryId: 0,
+                                categoryId: 1,
                                 id: null,
                                 currentQuantity: null,
                               ),
