@@ -60,4 +60,15 @@ class ProductUIModel {
     if (qty < initialQuantity * 0.5) return 'Stock bajo';
     return 'Stock disponible';
   }
+
+  String get categoryName {
+    switch (categoryId) {
+      case 1:
+        return 'Solidos';
+      case 2:
+        return 'Liquidos';
+      default:
+        return '';
+    }
+  }
 }
