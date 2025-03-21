@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meca_inventory/config/navigation/navigation.dart';
 import 'package:meca_inventory/presentation/add_product/add_product_screen.dart';
 
-class EmptyProductsList extends StatelessWidget {
-  const EmptyProductsList({super.key});
+class EmptyProductsScreen extends StatelessWidget {
+  const EmptyProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
