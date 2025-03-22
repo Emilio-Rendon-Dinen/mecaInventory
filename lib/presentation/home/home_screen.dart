@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       letterSpacing: 2.0,
                     ),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   elevation: 4,
                 ),
                 body: _selectedIndex == 0

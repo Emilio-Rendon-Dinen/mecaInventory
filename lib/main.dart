@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/config/dependency_injection/get_it.dart';
+import 'package:meca_inventory/config/material_theme.dart';
 import 'package:meca_inventory/presentation/home/home_screen.dart';
+import 'package:meca_inventory/config/create_text_theme.dart';
 
 void main() {
   getItConfiguration();
@@ -12,8 +14,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
+    final brightness = View.of(context).platformDispatcher.platformBrightness;
+    //Este código sirve para personalizar y configurar el estilo de texto global de la aplicación
+    TextTheme textTheme = createTextTheme(context, "Poppins", "Poppins");
+    MaterialTheme theme = MaterialTheme(textTheme);
+
+    return MaterialApp(
+      theme: brightness == Brightness.light ? theme.light() : theme.dark(),
+      home: const HomeScreen(),
     );
   }
 }
