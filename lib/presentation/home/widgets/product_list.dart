@@ -14,6 +14,7 @@ class ProductList extends StatelessWidget {
         final product = products[index];
         return ProductCard(
           product: product,
+          onTap: (product) {},
         );
       },
     );

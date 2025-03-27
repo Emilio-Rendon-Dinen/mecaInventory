@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:meca_inventory/domain/entities/product.dart';
+import 'package:meca_inventory/presentation/enums/stock_status.dart';
 
 class ProductUIModel {
   final int? id;
@@ -52,13 +53,13 @@ class ProductUIModel {
     );
   }
 
-  String get quantityStatus {
+  StockStatus get quantityStatus {
     final qty = currentQuantity ?? initialQuantity;
 
-    if (qty <= 0) return 'Sin stock';
-    if (qty < initialQuantity * 0.2) return 'Stock crítico';
-    if (qty < initialQuantity * 0.5) return 'Stock bajo';
-    return 'Stock disponible';
+    if (qty <= 0) return StockStatus.emptyStock;
+    if (qty < initialQuantity * 0.2) return StockStatus.criticStock;
+    if (qty < initialQuantity * 0.5) return StockStatus.lowStock;
+    return StockStatus.fullStock;
   }
 
   String get categoryName {
