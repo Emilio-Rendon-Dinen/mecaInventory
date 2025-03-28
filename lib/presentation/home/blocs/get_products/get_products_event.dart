@@ -4,13 +4,9 @@ sealed class GetProductsEvent {
   const GetProductsEvent();
 }
 
-final class GetProductsLoadedEvent extends GetProductsEvent {
-  const GetProductsLoadedEvent();
-}
-
-final class GetProductsLoadingEvent extends GetProductsEvent {
+final class GetProductsDataEvent extends GetProductsEvent {
   final GetProductsUseCase useCase;
-  const GetProductsLoadingEvent({
+  const GetProductsDataEvent({
     required this.useCase,
   });
 }

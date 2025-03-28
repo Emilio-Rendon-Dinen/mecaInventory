@@ -9,10 +9,10 @@ part 'get_products_state.dart';
 
 class GetProductsBloc extends Bloc<GetProductsEvent, GetProductsState> {
   GetProductsBloc() : super(GetProductsInitial()) {
-    on<GetProductsLoadingEvent>(_onGetProductsLoading);
+    on<GetProductsDataEvent>(_onGetProductsLoading);
   }
 
-  Future<void> _onGetProductsLoading(GetProductsLoadingEvent event, Emitter<GetProductsState> emit) async {
+  Future<void> _onGetProductsLoading(GetProductsDataEvent event, Emitter<GetProductsState> emit) async {
     List<ProductUIModel> products = [];
     emit(const GetProductsLoading());
     try {

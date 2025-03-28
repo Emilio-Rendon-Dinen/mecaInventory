@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         BlocProvider<GetProductsBloc>(
           create: (context) => GetProductsBloc()
             ..add(
-              GetProductsLoadingEvent(useCase: getIt.get<GetProductsUseCase>()),
+              GetProductsDataEvent(useCase: getIt.get<GetProductsUseCase>()),
             ),
         ),
       ],
