@@ -10,6 +10,7 @@ class DeleteProductBloc extends Bloc<StartDeleteProductEvent, DeleteProductState
   Future<void> _onDeleteProductLoading(StartDeleteProductEvent event, Emitter<DeleteProductState> emit) async {
     emit(const DeleteProductLoading());
     try {
+      event.useCase.deleteProduct(productId: event.productId);
       emit(const DeleteProductSuccess());
     } catch (e) {
       emit(DeleteProductError(error: e));

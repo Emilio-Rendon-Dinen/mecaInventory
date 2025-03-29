@@ -3,6 +3,8 @@ import 'package:meca_inventory/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/domain/use_cases/get_products_use_case.dart';
 import 'package:meca_inventory/presentation/add_product/add_product_screen.dart';
 import 'package:meca_inventory/presentation/empty_products/empty_products_screen.dart';
+import 'package:meca_inventory/presentation/home/blocs/delete_product/delete_product_bloc.dart';
+import 'package:meca_inventory/presentation/home/blocs/edit_product/edit_product_bloc.dart';
 import 'package:meca_inventory/presentation/home/blocs/get_products/get_products_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meca_inventory/presentation/home/widgets/product_list.dart';
@@ -33,6 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
               GetProductsDataEvent(useCase: getIt.get<GetProductsUseCase>()),
             ),
         ),
+        BlocProvider<EditProductBloc>(
+          create: (context) => EditProductBloc(),
+        ),
+        BlocProvider<DeleteProductBloc>(
+          create: (context) => DeleteProductBloc(),
+        )
       ],
       child: BlocBuilder<GetProductsBloc, GetProductsState>(
         builder: (context, state) {

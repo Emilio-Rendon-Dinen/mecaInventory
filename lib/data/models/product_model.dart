@@ -65,4 +65,18 @@ class ProductModel extends Product {
           categoryId: product.categoryId,
           image: product.image,
         );
+
+  /// Convierte el [ProductModel] en un [Map<String, dynamic>]
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'category_id': categoryId,
+      'name': name,
+      'description': description,
+      'cost': cost,
+      'initial_quantity': initialQuantity,
+      'current_quantity': currentQuantity,
+      'image': image,
+    };
+  }
 }

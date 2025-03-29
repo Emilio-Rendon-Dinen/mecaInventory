@@ -6,7 +6,10 @@ sealed class DeleteProductEvent {
 
 final class StartDeleteProductEvent extends DeleteProductEvent {
   final DeleteProductUseCase useCase;
-  final String productId;
+  final int productId;
 
-  const StartDeleteProductEvent(this.useCase, this.productId);
+  const StartDeleteProductEvent({
+    required this.useCase,
+    required this.productId,
+  });
 }

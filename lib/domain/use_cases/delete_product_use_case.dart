@@ -9,7 +9,9 @@ class DeleteProductUseCase {
     required int productId,
   }) {
     try {
-      return _deleteProductsRepository.deleteProduct(productId: productId);
+      return _deleteProductsRepository.deleteProduct(
+        productId: productId,
+      );
     } catch (e) {
       rethrow;
     }
