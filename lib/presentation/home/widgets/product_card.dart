@@ -48,10 +48,10 @@ class ProductCard extends StatelessWidget {
           ),
         ],
       ),
-      child: InkWell(
-        onTap: () => onTap(product),
-        child: Card(
-          elevation: 20,
+      child: Card(
+        elevation: 20,
+        child: InkWell(
+          onTap: () => onTap(product),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
