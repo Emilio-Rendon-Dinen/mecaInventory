@@ -4,7 +4,9 @@ import 'package:meca_inventory/domain/use_cases/get_products_use_case.dart';
 import 'package:meca_inventory/presentation/add_product/add_product_screen.dart';
 import 'package:meca_inventory/presentation/empty_products/empty_products_screen.dart';
 import 'package:meca_inventory/presentation/home/blocs/delete_product/delete_product_bloc.dart';
+import 'package:meca_inventory/presentation/home/blocs/delete_product/delete_product_state.dart';
 import 'package:meca_inventory/presentation/home/blocs/edit_product/edit_product_bloc.dart';
+import 'package:meca_inventory/presentation/home/blocs/edit_product/edit_product_state.dart';
 import 'package:meca_inventory/presentation/home/blocs/get_products/get_products_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meca_inventory/presentation/home/widgets/product_list.dart';
@@ -42,7 +44,36 @@ class _HomeScreenState extends State<HomeScreen> {
           create: (context) => DeleteProductBloc(),
         )
       ],
-      child: BlocBuilder<GetProductsBloc, GetProductsState>(
+      child: BlocConsumer<GetProductsBloc, GetProductsState>(
+        //El listener ayuda a escuchar cambios sin reconstruir la ui y mostrar snackbars o dialogos
+        listener: (context, state) {
+          if (state is GetProductsError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Ocurrio un error al obtener los productos')),
+            );
+          }
+          if (state is DeleteProductSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Producto eliminado correctamente')),
+            );
+          }
+          if (state is DeleteProductError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Ocurrio un error al eliminar el producto')),
+            );
+          }
+
+          if (state is EditProductSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Producto editado correctamente')),
+            );
+          }
+          if (state is EditProductError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Ocurrio un error al editar el producto')),
+            );
+          }
+        },
         builder: (context, state) {
           if (state is GetProductsLoading) {
             return const Center(child: CircularProgressIndicator());
@@ -95,3 +126,26 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+
+/*
+Diferencias entre BlocBuilder y BlocConsumer
+BlocBuilder:
+Propósito: Se utiliza para reconstruir una parte de la UI en respuesta a un cambio de estado en el Bloc.
+
+Uso principal: Cuando solo te interesa actualizar la UI en función del estado del bloc.
+
+Escucha el estado: Solo se utiliza para construir la UI cuando el estado cambia. 
+No permite realizar efectos secundarios (como mostrar un Snackbar o realizar una navegación).
+
+BlocConsumer:
+Propósito: Combina BlocListener (para escuchar cambios de estado y ejecutar efectos secundarios) 
+y BlocBuilder (para reconstruir la UI cuando el estado cambia).
+
+Uso principal: Cuando necesitas escuchar el estado y ejecutar algún efecto secundario 
+(como mostrar un Snackbar, navegar a otra pantalla, etc.), además de reconstruir la UI.
+
+Escucha el estado + Efectos secundarios: Permite escuchar el estado y hacer cosas como 
+mostrar un Snackbar, ejecutar una animación o cambiar la navegación sin reconstruir toda la UI.
+*/
