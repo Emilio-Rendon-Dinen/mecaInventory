@@ -46,6 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         child: MultiBlocListener(
           listeners: [
+            //El listener ayuda a escuchar cambios sin reconstruir la ui y mostrar snackbars o dialogos
+            //En este caso se tiene que tener un MultiBlocListener ya que escucha los cambios de estados de distintos blocs
             BlocListener<DeleteProductBloc, DeleteProductState>(
               listener: (context, state) {
                 if (state is DeleteProductSuccess) {
@@ -90,7 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
           child: BlocBuilder<GetProductsBloc, GetProductsState>(
-            //El listener ayuda a escuchar cambios sin reconstruir la ui y mostrar snackbars o dialogos
             builder: (context, state) {
               if (state is GetProductsLoading) {
                 return const Center(child: CircularProgressIndicator());
