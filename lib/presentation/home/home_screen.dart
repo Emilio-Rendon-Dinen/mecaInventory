@@ -30,100 +30,117 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<GetProductsBloc>(
-          create: (context) => GetProductsBloc()
-            ..add(
-              GetProductsDataEvent(useCase: getIt.get<GetProductsUseCase>()),
+        providers: [
+          BlocProvider<GetProductsBloc>(
+            create: (context) => GetProductsBloc()
+              ..add(
+                GetProductsDataEvent(useCase: getIt.get<GetProductsUseCase>()),
+              ),
+          ),
+          BlocProvider<EditProductBloc>(
+            create: (context) => EditProductBloc(),
+          ),
+          BlocProvider<DeleteProductBloc>(
+            create: (context) => DeleteProductBloc(),
+          )
+        ],
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<DeleteProductBloc, DeleteProductState>(
+              listener: (context, state) {
+                if (state is DeleteProductSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Producto eliminado correctamente')),
+                  );
+                  context.read<GetProductsBloc>().add(
+                        GetProductsDataEvent(
+                          useCase: getIt.get<GetProductsUseCase>(),
+                        ),
+                      );
+                }
+                if (state is DeleteProductError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Ocurrio un error al eliminar el producto')),
+                  );
+                }
+              },
             ),
-        ),
-        BlocProvider<EditProductBloc>(
-          create: (context) => EditProductBloc(),
-        ),
-        BlocProvider<DeleteProductBloc>(
-          create: (context) => DeleteProductBloc(),
-        )
-      ],
-      child: BlocConsumer<GetProductsBloc, GetProductsState>(
-        //El listener ayuda a escuchar cambios sin reconstruir la ui y mostrar snackbars o dialogos
-        listener: (context, state) {
-          if (state is GetProductsError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Ocurrio un error al obtener los productos')),
-            );
-          }
-          if (state is DeleteProductSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Producto eliminado correctamente')),
-            );
-          }
-          if (state is DeleteProductError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Ocurrio un error al eliminar el producto')),
-            );
-          }
-
-          if (state is EditProductSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Producto editado correctamente')),
-            );
-          }
-          if (state is EditProductError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Ocurrio un error al editar el producto')),
-            );
-          }
-        },
-        builder: (context, state) {
-          if (state is GetProductsLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is GetProductsSuccess) {
-            if (state.products.isEmpty) {
-              return const EmptyProductsScreen();
-            } else {
-              return Scaffold(
-                appBar: AppBar(
-                  title: const Text(
-                    'Meca inventario',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  elevation: 4,
-                ),
-                body: _selectedIndex == 0
-                    ? ProductList(products: state.products)
-                    : const AddProductScreen(
-                        isContent: true,
+            BlocListener<GetProductsBloc, GetProductsState>(
+              listener: (context, state) {
+                if (state is GetProductsError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Ocurrio un error al obtener los productos')),
+                  );
+                }
+              },
+            ),
+            BlocListener<EditProductBloc, EditProductState>(
+              listener: (context, state) {
+                if (state is EditProductSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Producto editado correctamente')),
+                  );
+                }
+                if (state is EditProductError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Ocurrio un error al editar el producto')),
+                  );
+                }
+              },
+            ),
+          ],
+          child: BlocBuilder<GetProductsBloc, GetProductsState>(
+            //El listener ayuda a escuchar cambios sin reconstruir la ui y mostrar snackbars o dialogos
+            builder: (context, state) {
+              if (state is GetProductsLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is GetProductsSuccess) {
+                if (state.products.isEmpty) {
+                  return const EmptyProductsScreen();
+                } else {
+                  return Scaffold(
+                    appBar: AppBar(
+                      title: const Text(
+                        'Meca inventario',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 2.0,
+                        ),
                       ),
-                bottomNavigationBar: BottomNavigationBar(
-                  items: const <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.list),
-                      label: 'Products',
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      elevation: 4,
                     ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.add),
-                      label: 'Add',
+                    body: _selectedIndex == 0
+                        ? ProductList(products: state.products)
+                        : const AddProductScreen(
+                            isContent: true,
+                          ),
+                    bottomNavigationBar: BottomNavigationBar(
+                      items: const <BottomNavigationBarItem>[
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.list),
+                          label: 'Products',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.add),
+                          label: 'Add',
+                        ),
+                      ],
+                      currentIndex: _selectedIndex,
+                      onTap: _onItemTapped,
                     ),
-                  ],
-                  currentIndex: _selectedIndex,
-                  onTap: _onItemTapped,
-                ),
-              );
-            }
-          } else if (state is GetProductsError) {
-            return Text('Error: ${state.error}');
-          } else {
-            return const SizedBox();
-          }
-        },
-      ),
-    );
+                  );
+                }
+              } else if (state is GetProductsError) {
+                return Text('Error: ${state.error}');
+              } else {
+                return const SizedBox();
+              }
+            },
+          ),
+        ));
   }
 }
 

@@ -34,15 +34,6 @@ class ProductCard extends StatelessWidget {
             icon: Icons.delete,
             label: 'Delete',
           ),
-          /* SlidableAction(
-            onPressed: (_) {
-              context.read<EditProductBloc>().add(EditProductRequestedEvent(productId: product.id!, useCase: getIt.get<EditProductUseCase>()));
-            },
-            backgroundColor: Colors.grey,
-            foregroundColor: Colors.white,
-            icon: Icons.edit,
-            label: 'Editar',
-          ),*/
         ],
       ),
       child: Card(
