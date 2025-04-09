@@ -24,20 +24,30 @@ class ProductCard extends StatelessWidget {
       endActionPane: ActionPane(
         // Aqui se define como se quiere ver la animacion del scroll
         motion: const ScrollMotion(),
+        // Controla el ancho de las acciones
+        extentRatio: 0.3,
         children: [
-          SlidableAction(
+          CustomSlidableAction(
+            // Usar CustomSlidableAction en lugar de SlidableAction
             onPressed: (_) {
               context.read<DeleteProductBloc>().add(StartDeleteProductEvent(productId: product.id!, useCase: getIt.get<DeleteProductUseCase>()));
             },
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
+            borderRadius: BorderRadius.circular(12),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.delete, color: Colors.white),
+                SizedBox(height: 4),
+                Text('Delete', style: TextStyle(color: Colors.white)),
+              ],
+            ),
           ),
         ],
       ),
       child: Card(
-        elevation: 20,
+        elevation: 12,
         child: InkWell(
           onTap: () => onTap(product),
           child: Padding(

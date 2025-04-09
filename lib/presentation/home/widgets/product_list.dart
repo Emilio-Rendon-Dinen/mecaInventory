@@ -12,9 +12,12 @@ class ProductList extends StatelessWidget {
       itemCount: products.length,
       itemBuilder: (context, index) {
         final product = products[index];
-        return ProductCard(
-          product: product,
-          onTap: (product) {},
+        return Padding(
+          padding: const EdgeInsets.all(2),
+          child: ProductCard(
+            product: product,
+            onTap: (product) {},
+          ),
         );
       },
     );
