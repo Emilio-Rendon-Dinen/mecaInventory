@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meca_inventory/presentation/dialogs/product_detail_dialog.dart';
 import 'package:meca_inventory/presentation/home/widgets/product_card.dart';
 import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
@@ -16,7 +17,12 @@ class ProductList extends StatelessWidget {
           padding: const EdgeInsets.all(2),
           child: ProductCard(
             product: product,
-            onTap: (product) {},
+            onTap: (product) {
+              showDialog(
+                context: context,
+                builder: (_) => ProductDetailDialog(product: product),
+              );
+            },
           ),
         );
       },
