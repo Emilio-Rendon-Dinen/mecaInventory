@@ -10,6 +10,7 @@ part 'get_products_state.dart';
 class GetProductsBloc extends Bloc<GetProductsEvent, GetProductsState> {
   GetProductsBloc() : super(GetProductsInitial()) {
     on<GetProductsDataEvent>(_onGetProductsLoading);
+    on<UpdateProductInListEvent>(_onUpdateProductInList);
   }
 
   Future<void> _onGetProductsLoading(GetProductsDataEvent event, Emitter<GetProductsState> emit) async {
@@ -25,4 +26,24 @@ class GetProductsBloc extends Bloc<GetProductsEvent, GetProductsState> {
       emit(GetProductsError(error: e));
     }
   }
+
+  Future<void> _onUpdateProductInList(UpdateProductInListEvent event, Emitter<GetProductsState> emit) async {
+    if (state case GetProductsSuccess(:final products)) {
+      final updatedList = products.map((product) {
+        return product.id == event.updatedProduct.id ? event.updatedProduct : product;
+      }).toList();
+
+      emit(GetProductsSuccess(products: updatedList));
+    }
+  }
 }
+
+//if (state case ...): Indica que quieres aplicar pattern matching sobre state.
+//GetProductsSuccess(...): El patrón que quieres identificar (una instancia de GetProductsSuccess).
+//:final products: Extraes la propiedad products de ese objeto y la asignas a una variable local products.
+
+// es lo mismo que
+/*
+if (state is GetProductsSuccess) {
+  final products = (state as GetProductsSuccess).products;
+}*/

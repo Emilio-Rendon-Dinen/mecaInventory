@@ -10,3 +10,9 @@ final class GetProductsDataEvent extends GetProductsEvent {
     required this.useCase,
   });
 }
+
+class UpdateProductInListEvent extends GetProductsEvent {
+  final ProductUIModel updatedProduct;
+
+  UpdateProductInListEvent({required this.updatedProduct});
+}

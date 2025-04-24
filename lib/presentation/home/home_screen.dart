@@ -82,6 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Producto editado correctamente')),
                   );
+                  context.read<GetProductsBloc>().add(
+                        UpdateProductInListEvent(updatedProduct: state.product),
+                      );
                 }
                 if (state is EditProductError) {
                   ScaffoldMessenger.of(context).showSnackBar(

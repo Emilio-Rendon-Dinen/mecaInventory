@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meca_inventory/presentation/add_product/add_product_screen.dart';
 import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
 //Se utiliza una clase en lugar de una funcion debido a que incluye temas relacionados con estado, lógica o navegación.
 class ProductDetailDialog extends StatefulWidget {
   final ProductUIModel product;
-  const ProductDetailDialog({required this.product, super.key});
+  final Function(ProductUIModel) onUpdate;
+  const ProductDetailDialog({required this.product, required this.onUpdate, super.key});
 
   @override
   State<ProductDetailDialog> createState() => _ProductDetailDialogState();
@@ -13,6 +15,7 @@ class ProductDetailDialog extends StatefulWidget {
 
 class _ProductDetailDialogState extends State<ProductDetailDialog> {
   final TextEditingController stockUsedController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -51,12 +54,37 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
               ],
             ),
             const SizedBox(height: 10),
-            TextField(
-              controller: stockUsedController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: "Stock utilizado",
-                border: OutlineInputBorder(),
+            Form(
+              key: _formKey,
+              child: TextFormField(
+                keyboardType: TextInputType.number,
+                controller: stockUsedController,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Ingresa la cantidad utilizada',
+                  hintStyle: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                  labelText: 'Ingresa la cantidad utilizada',
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                  ),
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor ingrese una cantidad';
+                  }
+                  final quantity = num.tryParse(value);
+                  if (quantity == 0) {
+                    return 'Por favor ingrese una cantidad válida';
+                  }
+                  return null;
+                },
               ),
             ),
           ],
@@ -77,13 +105,24 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
         ),
         TextButton(
           onPressed: () {
-            final usedStock = int.tryParse(stockUsedController.text);
-            if (usedStock != null) {
-              //final updatedStock = product.initialQuantity - usedStock;
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Ingresa un número válido")),
+            if (_formKey.currentState?.validate() ?? false) {
+              final usedQuantity = int.tryParse(stockUsedController.text)!;
+              final updatedCurrentQuantity = product.initialQuantity - usedQuantity;
+
+              final updatedProduct = ProductUIModel(
+                id: product.id,
+                name: product.name,
+                description: product.description,
+                cost: product.cost,
+                initialQuantity: product.initialQuantity,
+                currentQuantity: updatedCurrentQuantity,
+                categoryId: product.categoryId,
+                image: product.image,
+                hasImage: product.hasImage,
               );
+
+              widget.onUpdate(updatedProduct);
+              Navigator.pop(context);
             }
           },
           child: const Text("Actualizar"),

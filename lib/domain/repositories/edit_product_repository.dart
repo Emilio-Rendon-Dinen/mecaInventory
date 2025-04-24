@@ -1,7 +1,7 @@
 import 'package:meca_inventory/domain/entities/product.dart';
 
 abstract class EditProductRepository {
-  Future<void> editProduct({
+  Future<Product> editProduct({
     required Product product,
   });
 }

@@ -5,7 +5,7 @@ class EditProductUseCase {
   final EditProductRepository _editProductRepository;
   const EditProductUseCase(this._editProductRepository);
 
-  Future<void> editProduct({
+  Future<Product> editProduct({
     required Product product,
   }) {
     try {
