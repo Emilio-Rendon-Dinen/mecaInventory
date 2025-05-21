@@ -86,28 +86,38 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Categoria: ${product.categoryName}',
-                        ),
-                        Text(
-                          'Costo: ${product.cost}',
-                        ),
-                        Text(
-                          'cantidad: ${product.currentQuantity}/${product.initialQuantity}',
-                        ),
-                        Text(
-                          product.quantityStatus.stringValue,
-                          style: TextStyle(color: product.quantityStatus.colorValue),
-                        ),
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Categoria: ${product.categoryName}',
+                          ),
+                          Text(
+                            'Costo: ${product.cost}',
+                          ),
+                          Text(
+                            'cantidad: ${product.currentQuantity}/${product.initialQuantity}',
+                          ),
+                          Text(
+                            product.quantityStatus.stringValue,
+                            style: TextStyle(color: product.quantityStatus.colorValue),
+                          ),
+                          Text(
+                            product.description,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
                 Text(
                   product.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
