@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meca_inventory/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/config/navigation/navigation.dart';
 import 'package:meca_inventory/domain/use_cases/add_product_use_case.dart';
-import 'package:meca_inventory/presentation/add_product/blocs/add_products_bloc.dart';
-import 'package:meca_inventory/presentation/add_product/widgets/image_picker_button.dart';
-import 'package:meca_inventory/presentation/home/home_screen.dart';
+import 'package:meca_inventory/presentation/screens/add_product/blocs/add_products_bloc.dart';
+import 'package:meca_inventory/presentation/screens/add_product/widgets/image_picker_button.dart';
+import 'package:meca_inventory/presentation/screens/home/home_screen.dart';
 import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
 class AddProductScreen extends StatefulWidget {

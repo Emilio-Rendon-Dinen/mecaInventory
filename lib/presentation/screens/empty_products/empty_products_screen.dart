@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/config/navigation/navigation.dart';
-import 'package:meca_inventory/presentation/add_product/add_product_screen.dart';
+import 'package:meca_inventory/presentation/screens/add_product/add_product_screen.dart';
 
 class EmptyProductsScreen extends StatelessWidget {
   const EmptyProductsScreen({super.key});

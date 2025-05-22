@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:meca_inventory/presentation/add_product/add_product_screen.dart';
+import 'package:meca_inventory/presentation/screens/restock_product/restock_product_screen.dart';
 import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
 //Se utiliza una clase en lugar de una funcion debido a que incluye temas relacionados con estado, lógica o navegación.
@@ -31,26 +31,30 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
       title: Text(product.name),
       content: SingleChildScrollView(
         child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            product.hasImage
-                ? Image.memory(product.image!, fit: BoxFit.cover)
-                : Container(
-                    color: Colors.grey[300],
-                    width: 100,
-                    height: 100,
-                    child: const Center(
-                      child: Icon(
-                        Icons.image,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+            Hero(
+              tag: 'product-image-${product.id}',
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: product.hasImage
+                      ? Image.memory(product.image!, fit: BoxFit.cover)
+                      : Container(
+                          color: Colors.grey[300],
+                          child: const Icon(Icons.image, color: Colors.white),
+                        ),
+                ),
+              ),
+            ),
             const SizedBox(height: 10),
             Row(
               children: [
-                const Text("Stock inicial: "),
-                Text('${product.initialQuantity}'),
+                const Text("Stock actual: "),
+                Text('${product.currentQuantity}'),
               ],
             ),
             const SizedBox(height: 10),
@@ -87,21 +91,25 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
                 },
               ),
             ),
+            const SizedBox(height: 10),
+            Text(
+              widget.product.description,
+              style: const TextStyle(fontSize: 16),
+            )
           ],
         ),
       ),
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).pop();
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => const AddProductScreen(),
+                builder: (_) => RestockProductScreen(product: product),
               ),
             );
           },
-          child: const Text("Editar"),
+          child: const Text("Restock"),
         ),
         TextButton(
           onPressed: () {

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meca_inventory/presentation/home/blocs/delete_product/delete_product_event.dart';
-import 'package:meca_inventory/presentation/home/blocs/delete_product/delete_product_state.dart';
+import 'package:meca_inventory/presentation/screens/home/blocs/delete_product/delete_product_event.dart';
+import 'package:meca_inventory/presentation/screens/home/blocs/delete_product/delete_product_state.dart';
 
 class DeleteProductBloc extends Bloc<StartDeleteProductEvent, DeleteProductState> {
   DeleteProductBloc() : super(DeleteProductInitial()) {

@@ -4,8 +4,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:meca_inventory/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/domain/use_cases/delete_product_use_case.dart';
 import 'package:meca_inventory/presentation/enums/stock_status.dart';
-import 'package:meca_inventory/presentation/home/blocs/delete_product/delete_product_bloc.dart';
-import 'package:meca_inventory/presentation/home/blocs/delete_product/delete_product_event.dart';
+import 'package:meca_inventory/presentation/screens/home/blocs/delete_product/delete_product_bloc.dart';
+import 'package:meca_inventory/presentation/screens/home/blocs/delete_product/delete_product_event.dart';
 import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
 class ProductCard extends StatelessWidget {

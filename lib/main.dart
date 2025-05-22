@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/config/material_theme.dart';
-import 'package:meca_inventory/presentation/home/home_screen.dart';
+import 'package:meca_inventory/presentation/screens/home/home_screen.dart';
 import 'package:meca_inventory/config/create_text_theme.dart';
 
 void main() {
