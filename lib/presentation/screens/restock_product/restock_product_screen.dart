@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meca_inventory/presentation/screens/add_product/widgets/image_picker_button.dart';
 import 'package:meca_inventory/presentation/ui_models/product_ui_model.dart';
 
 class RestockProductScreen extends StatelessWidget {
@@ -17,19 +18,18 @@ class RestockProductScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Hero(
-                tag: 'product-image-${product.id}',
-                child: ClipRRect(
+            child: Hero(
+              tag: 'product-image-${product.id}',
+              child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.memory(
-                    product.image!,
-                    fit: BoxFit.cover,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    height: MediaQuery.of(context).size.width * 0.8,
-                  ),
-                ),
-              ),
+                  child: product.hasImage
+                      ? Image.memory(
+                          product.image!,
+                          fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.width * 0.8,
+                        )
+                      : ImagePickerButton(onImagePicked: (bytes) {})),
             )),
       ),
     );

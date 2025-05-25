@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerButton extends StatefulWidget {
-  final Function(
-    File pickedImage,
-    Uint8List bytes,
-  ) onImagePicked;
+  final Function(Uint8List bytes) onImagePicked;
 
   const ImagePickerButton({
     required this.onImagePicked,
@@ -44,7 +41,7 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
           _imageBytes = bytes;
         });
 
-        widget.onImagePicked(imageFile, bytes);
+        widget.onImagePicked(bytes);
       }
     } catch (e) {
       debugPrint('Error al seleccionar imagen: $e');
@@ -56,46 +53,46 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
     return Column(
       children: [
         const SizedBox(height: 8),
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: _pickImage,
-            borderRadius: BorderRadius.circular(10.0),
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Theme.of(context).colorScheme.secondaryContainer,
-              ),
-              child: Center(
-                child: Text(
-                  _selectedImage == null ? 'Seleccionar imagen' : 'Cambiar imagen',
+        _selectedImage == null
+            ? InkWell(
+                onTap: _pickImage,
+                child: Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: const Color.fromARGB(123, 148, 147, 147),
+                  ),
+                  child: const Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add_a_photo_outlined),
+                        Text('Agrega una o mas fotos'),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-        ),
+              )
+            : Container(),
         if (_selectedImage != null || _imageBytes != null)
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: 150,
-              height: 150,
-              margin: const EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8),
-              ),
+            child: InkWell(
+              onTap: _pickImage,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: _selectedImage != null
                     ? Image.file(
                         _selectedImage!,
                         fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.width * 0.8,
                       )
                     : Image.memory(
                         _imageBytes!,
                         fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.width * 0.8,
                       ),
               ),
             ),

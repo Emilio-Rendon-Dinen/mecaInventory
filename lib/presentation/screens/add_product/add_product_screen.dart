@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -194,7 +193,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             ),
                           ),
                           ImagePickerButton(
-                            onImagePicked: (File file, Uint8List bytes) {
+                            onImagePicked: (Uint8List bytes) {
                               // Guardar los bytes para usarlos al guardar el producto en la base de datos
                               productImage = bytes;
                             },
