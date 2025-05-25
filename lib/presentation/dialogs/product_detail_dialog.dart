@@ -95,6 +95,8 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
             Text(
               widget.product.description,
               style: const TextStyle(fontSize: 16),
+              maxLines: 5,
+              overflow: TextOverflow.ellipsis,
             )
           ],
         ),
@@ -111,7 +113,7 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
           },
           child: const Text("Reabastecer"),
         ),
-        TextButton(
+        FilledButton(
           onPressed: () {
             if (_formKey.currentState?.validate() ?? false) {
               final usedQuantity = int.tryParse(stockUsedController.text)!;
@@ -134,7 +136,7 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
             }
           },
           child: const Text("Reducir stock"),
-        ),
+        )
       ],
     );
   }
