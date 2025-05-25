@@ -109,7 +109,7 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
               ),
             );
           },
-          child: const Text("Restock"),
+          child: const Text("Reabastecer"),
         ),
         TextButton(
           onPressed: () {
@@ -133,7 +133,7 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
               Navigator.pop(context);
             }
           },
-          child: const Text("Actualizar"),
+          child: const Text("Reducir stock"),
         ),
       ],
     );
