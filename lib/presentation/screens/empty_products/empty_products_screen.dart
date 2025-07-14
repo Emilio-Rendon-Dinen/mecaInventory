@@ -9,7 +9,15 @@ class EmptyProductsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meca inventario'),
+        title: Text(
+          'Meca inventario',
+          style: TextStyle(
+            fontSize: 24,
+            color: Theme.of(context).colorScheme.onPrimary,
+            letterSpacing: 2.0,
+          ),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SafeArea(
         child: Padding(

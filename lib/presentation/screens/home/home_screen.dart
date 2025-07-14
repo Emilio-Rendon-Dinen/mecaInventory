@@ -52,7 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
               listener: (context, state) {
                 if (state is DeleteProductSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Producto eliminado correctamente')),
+                    const SnackBar(
+                        content: Text('Producto eliminado correctamente')),
                   );
                   context.read<GetProductsBloc>().add(
                         GetProductsDataEvent(
@@ -62,7 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 if (state is DeleteProductError) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Ocurrio un error al eliminar el producto')),
+                    const SnackBar(
+                        content:
+                            Text('Ocurrio un error al eliminar el producto')),
                   );
                 }
               },
@@ -71,7 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
               listener: (context, state) {
                 if (state is GetProductsError) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Ocurrio un error al obtener los productos')),
+                    const SnackBar(
+                        content:
+                            Text('Ocurrio un error al obtener los productos')),
                   );
                 }
               },
@@ -80,7 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
               listener: (context, state) {
                 if (state is EditProductSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Producto editado correctamente')),
+                    const SnackBar(
+                        content: Text('Producto editado correctamente')),
                   );
                   context.read<GetProductsBloc>().add(
                         UpdateProductInListEvent(updatedProduct: state.product),
@@ -88,7 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 if (state is EditProductError) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Ocurrio un error al editar el producto')),
+                    const SnackBar(
+                        content:
+                            Text('Ocurrio un error al editar el producto')),
                   );
                 }
               },
@@ -104,17 +112,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else {
                   return Scaffold(
                     appBar: AppBar(
-                      title: const Text(
+                      title: Text(
                         'Meca inventario',
                         style: TextStyle(
                           fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onPrimary,
                           letterSpacing: 2.0,
                         ),
                       ),
                       backgroundColor: Theme.of(context).colorScheme.primary,
-                      elevation: 4,
                     ),
                     body: _selectedIndex == 0
                         ? ProductList(products: state.products)

@@ -72,17 +72,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
               appBar: widget.isContent == true
                   ? null
                   : AppBar(
-                      title: const Text(
+                      title: Text(
                         'Agrega tu primer producto',
                         style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 2.0,
-                        ),
+                            color: Theme.of(context).colorScheme.onPrimary),
                       ),
-                      backgroundColor: Colors.black,
-                      elevation: 4,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                     ),
               body: SafeArea(
                 child: Padding(
@@ -215,7 +210,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                 name: nameController.text,
                                 description: descriptionController.text,
                                 cost: costController.text,
-                                initialQuantity: int.tryParse(initialQuantityController.text) ?? 0,
+                                initialQuantity: int.tryParse(
+                                        initialQuantityController.text) ??
+                                    0,
                                 image: productImage,
                                 categoryId: 1,
                                 id: null,
