@@ -1,0 +1,37 @@
+{
+  "@@locale": "es",
+  "appTitle": "Meca inventario",
+  "@appTitle": {
+    "description": "El título de la aplicación"
+  },
+  "delete": "Eliminar",
+  "@delete": {
+    "description": "Texto de la acción eliminar"
+  },
+  "category": "Categoría",
+  "@category": {
+    "description": "Etiqueta de categoría"
+  },
+  "cost": "Costo",
+  "@cost": {
+    "description": "Etiqueta de costo"
+  },
+  "quantity": "Cantidad",
+  "@quantity": {
+    "description": "Etiqueta de cantidad"
+  },
+  "currentQuantity": "Actual: {current}/{total}",
+  "@currentQuantity": {
+    "description": "Visualización de cantidad actual",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "5"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  }
+}

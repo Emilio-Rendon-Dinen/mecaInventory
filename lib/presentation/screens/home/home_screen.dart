@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/domain/use_cases/get_products_use_case.dart';
+import 'package:meca_inventory/l10n/app_localizations.dart';
 import 'package:meca_inventory/presentation/screens/add_product/add_product_screen.dart';
 import 'package:meca_inventory/presentation/screens/empty_products/empty_products_screen.dart';
 import 'package:meca_inventory/presentation/screens/home/blocs/delete_product/delete_product_bloc.dart';
@@ -113,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Scaffold(
                     appBar: AppBar(
                       title: Text(
-                        'Meca inventario',
+                        AppLocalizations.of(context)!.appTitle,
                         style: TextStyle(
                           fontSize: 24,
                           color: Theme.of(context).colorScheme.onPrimary,
