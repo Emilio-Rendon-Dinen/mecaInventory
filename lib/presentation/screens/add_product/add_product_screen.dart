@@ -51,23 +51,25 @@ class _AddProductScreenState extends State<AddProductScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddProductsBloc(),
-      child: BlocBuilder<AddProductsBloc, AddProductsState>(
-        builder: (context, state) {
-          if (state is AddProductsLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is AddProductsSuccess) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (context.mounted) {
-                Navigation.pushAndRemoveUntil(
-                  context: context,
-                  screen: const HomeScreen(),
-                );
-              }
-            });
-            return const Center(child: Text('Producto Agregado'));
+      // Se utiliza BlocListener ya que se utiliza una navegacion como efecto secundario y el blocbuilder solo genera ui
+      child: BlocListener<AddProductsBloc, AddProductsState>(
+        listener: (context, state) {
+          if (state is AddProductsSuccess) {
+            Navigation.pushAndRemoveUntil(
+              context: context,
+              screen: const HomeScreen(),
+            );
           } else if (state is AddProductsError) {
-            return const Center(child: Text('Error al agregar producto'));
-          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Error al agregar producto')),
+            );
+          }
+        },
+        child: BlocBuilder<AddProductsBloc, AddProductsState>(
+          builder: (context, state) {
+            if (state is AddProductsLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
             return Scaffold(
               appBar: widget.isContent == true
                   ? null
@@ -227,8 +229,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
               ),
             );
-          }
-        },
+          },
+        ),
       ),
     );
   }
