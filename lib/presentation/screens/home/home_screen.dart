@@ -53,8 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
               listener: (context, state) {
                 if (state is DeleteProductSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Producto eliminado correctamente')),
+                    SnackBar(
+                        content:
+                            Text(AppLocalizations.of(context)!.deleteProduct)),
                   );
                   context.read<GetProductsBloc>().add(
                         GetProductsDataEvent(
@@ -129,14 +130,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             isContent: true,
                           ),
                     bottomNavigationBar: BottomNavigationBar(
-                      items: const <BottomNavigationBarItem>[
+                      items: <BottomNavigationBarItem>[
                         BottomNavigationBarItem(
-                          icon: Icon(Icons.list),
-                          label: 'Products',
+                          icon: const Icon(Icons.list),
+                          label: AppLocalizations.of(context)!.products,
                         ),
                         BottomNavigationBarItem(
-                          icon: Icon(Icons.add),
-                          label: 'Add',
+                          icon: const Icon(Icons.add),
+                          label: AppLocalizations.of(context)!.add,
                         ),
                       ],
                       currentIndex: _selectedIndex,

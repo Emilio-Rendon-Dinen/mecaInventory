@@ -1,37 +1,12 @@
 {
   "@@locale": "en",
   "appTitle": "Meca Inventory",
-  "@appTitle": {
-    "description": "The title of the application"
-  },
   "delete": "Delete",
-  "@delete": {
-    "description": "Delete action text"
-  },
   "category": "Category",
-  "@category": {
-    "description": "Category label"
-  },
   "cost": "Cost",
-  "@cost": {
-    "description": "Cost label"
-  },
   "quantity": "Quantity",
-  "@quantity": {
-    "description": "Quantity label"
-  },
   "currentQuantity": "Current: {current}/{total}",
-  "@currentQuantity": {
-    "description": "Current quantity display",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "5"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  }
+  "products": "Products",
+  "add": "Add",
+  "productDeletedSuccessfully": "Product deleted successfully"
 }

@@ -9,7 +9,7 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'Inventario Meca';
+  String get appTitle => 'Meca inventario';
 
   @override
   String get delete => 'Eliminar';
@@ -24,7 +24,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get quantity => 'Cantidad';
 
   @override
-  String currentQuantity(int current, int total) {
+  String currentQuantity(Object current, Object total) {
     return 'Actual: $current/$total';
   }
+
+  @override
+  String get products => 'Productos';
+
+  @override
+  String get add => 'Agregar';
+
+  @override
+  String get deleteProduct => 'Producto eliminado correctamente';
 }

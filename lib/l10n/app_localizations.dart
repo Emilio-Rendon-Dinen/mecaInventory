@@ -95,41 +95,59 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
-  /// The title of the application
+  /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
   /// **'Meca Inventory'**
   String get appTitle;
 
-  /// Delete action text
+  /// No description provided for @delete.
   ///
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
 
-  /// Category label
+  /// No description provided for @category.
   ///
   /// In en, this message translates to:
   /// **'Category'**
   String get category;
 
-  /// Cost label
+  /// No description provided for @cost.
   ///
   /// In en, this message translates to:
   /// **'Cost'**
   String get cost;
 
-  /// Quantity label
+  /// No description provided for @quantity.
   ///
   /// In en, this message translates to:
   /// **'Quantity'**
   String get quantity;
 
-  /// Current quantity display
+  /// No description provided for @currentQuantity.
   ///
   /// In en, this message translates to:
   /// **'Current: {current}/{total}'**
-  String currentQuantity(int current, int total);
+  String currentQuantity(Object current, Object total);
+
+  /// No description provided for @products.
+  ///
+  /// In en, this message translates to:
+  /// **'Products'**
+  String get products;
+
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// No description provided for @deleteProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Product deleted correctly'**
+  String get deleteProduct;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -24,7 +24,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quantity => 'Quantity';
 
   @override
-  String currentQuantity(int current, int total) {
+  String currentQuantity(Object current, Object total) {
     return 'Current: $current/$total';
   }
+
+  @override
+  String get products => 'Products';
+
+  @override
+  String get add => 'Add';
+
+  @override
+  String get deleteProduct => 'Product deleted correctly';
 }
