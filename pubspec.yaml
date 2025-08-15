@@ -1,6 +1,6 @@
 name: meca_inventory
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -32,11 +32,3 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
-
-l10n:
-  arb-dir: lib/l10n
-  template-arb-file: app_en.arb
-
-
-
-
