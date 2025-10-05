@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:meca_inventory/src/config/dependency_injection/get_it.dart';
+import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 import 'package:meca_inventory/src/domain/use_cases/delete_product_use_case.dart';
 import 'package:meca_inventory/src/presentation/enums/stock_status.dart';
 import 'package:meca_inventory/src/presentation/screens/home/blocs/delete_product/delete_product_bloc.dart';
@@ -37,12 +38,15 @@ class ProductCard extends StatelessWidget {
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             borderRadius: BorderRadius.circular(12),
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.delete, color: Colors.white),
-                SizedBox(height: 4),
-                Text('Delete', style: TextStyle(color: Colors.white)),
+                const Icon(Icons.delete, color: Colors.white),
+                const SizedBox(height: 4),
+                Text(
+                  context.strings.delete,
+                  style: const TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ),
@@ -93,13 +97,16 @@ class ProductCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Categoria: ${product.categoryName}',
+                            context.strings.cardCategory(product.categoryName),
                           ),
                           Text(
-                            'Costo: ${product.cost}',
+                            context.strings.cardCost(product.cost),
                           ),
                           Text(
-                            'cantidad: ${product.currentQuantity}/${product.initialQuantity}',
+                            context.strings.cardQuantity(
+                              product.currentQuantity ?? 0,
+                              product.initialQuantity,
+                            ),
                           ),
                           Text(
                             product.quantityStatus.stringValue,

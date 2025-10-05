@@ -1,9 +1,46 @@
 {
     "appTitle": "Meca Inventory",
+    "successDeleteProduct": "Product deleted successfully",
     "deleteProductError": "An error occurred while deleting the product",
     "getProductsError": "An error occurred while retrieving the products",
     "editProductError": "An error occurred while editing the product",
     "successEditProduct": "Product edited successfully",
     "products": "Products",
-    "add": "Add"
+    "add": "Add",
+    "delete": "Delete",
+    "cardCategory": "Category: {category}",
+    "@cardCategory": {
+        "description": "Category displayed on the product card",
+        "placeholders": {
+        "category": {
+            "type": "String",
+            "example": "Electronics"
+        }
+        }
+    },
+    "cardCost": "Cost: {cost}",
+    "@cardCost": {
+        "description": "Cost displayed on the product card",
+        "placeholders": {
+        "cost": {
+            "type": "String",
+            "example": "100.00"
+        }
+        }
+    },
+    "cardQuantity": "Quantity: {currentQuantity}/{initialQuantity}",
+    "@cardQuantity": {
+        "description": "Current quantity over initial quantity displayed on the product card",
+        "placeholders": {
+        "currentQuantity": {
+            "type": "int",
+            "example": "5"
+        },
+        "initialQuantity": {
+            "type": "int",
+            "example": "10"
+        }
+    }},
+    "addProducts": "Add products",
+    "emptyProducts": "No products available"
 }

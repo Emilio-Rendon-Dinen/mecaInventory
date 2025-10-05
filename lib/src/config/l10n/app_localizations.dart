@@ -104,6 +104,12 @@ abstract class AppLocalizations {
   /// **'Meca inventario'**
   String get appTitle;
 
+  /// No description provided for @successDeleteProduct.
+  ///
+  /// In es, this message translates to:
+  /// **'Producto eliminado exitosamente'**
+  String get successDeleteProduct;
+
   /// No description provided for @deleteProductError.
   ///
   /// In es, this message translates to:
@@ -139,6 +145,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Agregar'**
   String get add;
+
+  /// No description provided for @delete.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar'**
+  String get delete;
+
+  /// Categoria que se muestra en el card de producto
+  ///
+  /// In es, this message translates to:
+  /// **'Categoria: {category}'**
+  String cardCategory(String category);
+
+  /// Costo que se muestra en el card de producto
+  ///
+  /// In es, this message translates to:
+  /// **'Costo: {cost}'**
+  String cardCost(String cost);
+
+  /// Cantidad actual sobre cantidad inicial que se muestra en el card de producto
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad: {currentQuantity}/{initialQuantity}'**
+  String cardQuantity(int currentQuantity, int initialQuantity);
+
+  /// No description provided for @addProducts.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar productos'**
+  String get addProducts;
+
+  /// No description provided for @emptyProducts.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay productos'**
+  String get emptyProducts;
 }
 
 class _AppLocalizationsDelegate

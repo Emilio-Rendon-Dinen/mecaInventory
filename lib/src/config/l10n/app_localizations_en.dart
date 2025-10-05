@@ -12,6 +12,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Meca Inventory';
 
   @override
+  String get successDeleteProduct => 'Product deleted successfully';
+
+  @override
   String get deleteProductError =>
       'An error occurred while deleting the product';
 
@@ -30,4 +33,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get add => 'Add';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String cardCategory(String category) {
+    return 'Category: $category';
+  }
+
+  @override
+  String cardCost(String cost) {
+    return 'Cost: $cost';
+  }
+
+  @override
+  String cardQuantity(int currentQuantity, int initialQuantity) {
+    return 'Quantity: $currentQuantity/$initialQuantity';
+  }
+
+  @override
+  String get addProducts => 'Add products';
+
+  @override
+  String get emptyProducts => 'No products available';
 }

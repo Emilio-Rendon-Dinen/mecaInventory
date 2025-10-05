@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/src/config/dependency_injection/get_it.dart';
-import 'package:meca_inventory/src/config/l10n/app_localizations.dart';
 import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 import 'package:meca_inventory/src/domain/use_cases/get_products_use_case.dart';
 import 'package:meca_inventory/src/presentation/screens/add_product/add_product_screen.dart';
@@ -55,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (state is DeleteProductSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Inicio'),
+                      content: Text(context.strings.successDeleteProduct),
                     ),
                   );
                   context.read<GetProductsBloc>().add(

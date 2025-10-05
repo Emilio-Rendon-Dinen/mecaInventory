@@ -12,6 +12,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appTitle => 'Meca inventario';
 
   @override
+  String get successDeleteProduct => 'Producto eliminado exitosamente';
+
+  @override
   String get deleteProductError => 'Ocurrio un error al eliminar el producto';
 
   @override
@@ -28,4 +31,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get add => 'Agregar';
+
+  @override
+  String get delete => 'Eliminar';
+
+  @override
+  String cardCategory(String category) {
+    return 'Categoria: $category';
+  }
+
+  @override
+  String cardCost(String cost) {
+    return 'Costo: $cost';
+  }
+
+  @override
+  String cardQuantity(int currentQuantity, int initialQuantity) {
+    return 'Cantidad: $currentQuantity/$initialQuantity';
+  }
+
+  @override
+  String get addProducts => 'Agregar productos';
+
+  @override
+  String get emptyProducts => 'No hay productos';
 }

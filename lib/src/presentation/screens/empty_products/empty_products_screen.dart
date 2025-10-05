@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/src/config/navigation/navigation.dart';
+import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 import 'package:meca_inventory/src/presentation/screens/add_product/add_product_screen.dart';
 
 class EmptyProductsScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class EmptyProductsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Meca inventario',
+          context.strings.appTitle,
           style: TextStyle(
             fontSize: 24,
             color: Theme.of(context).colorScheme.onPrimary,
@@ -30,7 +31,7 @@ class EmptyProductsScreen extends StatelessWidget {
                   Icons.precision_manufacturing_outlined,
                   size: 50,
                 ),
-                const Text('No hay productos'),
+                Text(context.strings.emptyProducts),
                 const SizedBox(
                   height: 20,
                 ),
@@ -46,7 +47,7 @@ class EmptyProductsScreen extends StatelessWidget {
                       screen: const AddProductScreen(),
                     );
                   },
-                  child: const Text('Agregar producto'),
+                  child: Text(context.strings.addProducts),
                 )
               ],
             ),
