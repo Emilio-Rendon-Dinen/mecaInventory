@@ -54,5 +54,10 @@
     "validNumber": "Por favor ingresa un numero valido",
     "validValue": "Por favor ingresa un valor valido",
     "validDescription": "Por favor ingresa una descripcion",
-    "addName": "Por favor ingresa un nombre"
+    "addName": "Por favor ingresa un nombre",
+    "selectFromGallery": "Seleccionar de la galeria",
+    "takePhoto": "Tomar foto",
+    "permissionDenied": "Permiso denegado",
+    "errorSelectingImage": "Error al seleccionar la imagen",
+    "addProductImage": "Agregar imagen del producto"
 }

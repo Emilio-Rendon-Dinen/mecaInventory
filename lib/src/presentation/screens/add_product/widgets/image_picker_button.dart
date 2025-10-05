@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ImagePickerButton extends StatefulWidget {
@@ -33,7 +34,7 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
           children: [
             ListTile(
               leading: const Icon(Icons.photo_library),
-              title: const Text('Seleccionar de galería'),
+              title: Text(context.strings.selectFromGallery),
               onTap: () {
                 Navigator.of(context).pop();
                 _pickImage(ImageSource.gallery);
@@ -41,7 +42,7 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
             ),
             ListTile(
               leading: const Icon(Icons.camera_alt),
-              title: const Text('Tomar una foto'),
+              title: Text(context.strings.takePhoto),
               onTap: () {
                 Navigator.of(context).pop();
                 _pickImage(ImageSource.camera);
@@ -52,6 +53,15 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
       ),
     );
   }
+  /*
+  Cuando hay un await,
+   el widget puede haber sido desmontado (disposed) 
+   antes de que el código continúe, y usar el BuildContext 
+   en ese caso puede causar errores.
+   --------------------------------
+   Antes de usar context después de un await, 
+   verifica que el widget sigue montado usando if (!mounted) return;.
+  */
 
   Future<void> _pickImage(ImageSource source) async {
     try {
@@ -69,8 +79,9 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
         }
 
         if (!status.isGranted) {
+          if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Permiso denegado.')),
+            SnackBar(content: Text(context.strings.permissionDenied)),
           );
           return;
         }
@@ -90,6 +101,8 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
 
         final Uint8List bytes = await imageFile.readAsBytes();
 
+        if (!mounted) return;
+
         setState(() {
           _selectedImage = imageFile;
           _imageBytes = bytes;
@@ -98,7 +111,8 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
         widget.onImagePicked(bytes);
       }
     } catch (e) {
-      debugPrint('Error al seleccionar imagen: $e');
+      if (!mounted) return;
+      debugPrint('${context.strings.errorSelectingImage}: $e');
     }
   }
 
@@ -116,12 +130,12 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
                     borderRadius: BorderRadius.circular(10.0),
                     color: const Color.fromARGB(123, 148, 147, 147),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.add_a_photo_outlined),
-                        Text('Agrega una foto al producto'),
+                        const Icon(Icons.add_a_photo_outlined),
+                        Text(context.strings.addProductImage),
                       ],
                     ),
                   ),

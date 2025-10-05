@@ -247,6 +247,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Por favor ingresa un nombre'**
   String get addName;
+
+  /// No description provided for @selectFromGallery.
+  ///
+  /// In es, this message translates to:
+  /// **'Seleccionar de la galeria'**
+  String get selectFromGallery;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In es, this message translates to:
+  /// **'Tomar foto'**
+  String get takePhoto;
+
+  /// No description provided for @permissionDenied.
+  ///
+  /// In es, this message translates to:
+  /// **'Permiso denegado'**
+  String get permissionDenied;
+
+  /// No description provided for @errorSelectingImage.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al seleccionar la imagen'**
+  String get errorSelectingImage;
+
+  /// No description provided for @addProductImage.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar imagen del producto'**
+  String get addProductImage;
 }
 
 class _AppLocalizationsDelegate

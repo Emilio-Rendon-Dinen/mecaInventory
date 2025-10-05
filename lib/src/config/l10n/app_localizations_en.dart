@@ -90,4 +90,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addName => 'Please enter a name';
+
+  @override
+  String get selectFromGallery => 'Select from gallery';
+
+  @override
+  String get takePhoto => 'Take photo';
+
+  @override
+  String get permissionDenied => 'Permission denied';
+
+  @override
+  String get errorSelectingImage => 'Error selecting image';
+
+  @override
+  String get addProductImage => 'Add product image';
 }
