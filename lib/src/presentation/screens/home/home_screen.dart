@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/src/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/src/config/l10n/app_localizations.dart';
+import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 import 'package:meca_inventory/src/domain/use_cases/get_products_use_case.dart';
 import 'package:meca_inventory/src/presentation/screens/add_product/add_product_screen.dart';
 import 'package:meca_inventory/src/presentation/screens/empty_products/empty_products_screen.dart';
@@ -66,8 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (state is DeleteProductError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text(
-                          AppLocalizations.of(context)!.deleteProductError),
+                      content: Text(context.strings.deleteProductError),
                     ),
                   );
                 }
@@ -78,8 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (state is GetProductsError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content:
-                          Text(AppLocalizations.of(context)!.getProductsError),
+                      content: Text(context.strings.getProductsError),
                     ),
                   );
                 }
@@ -90,8 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (state is EditProductSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text(
-                          AppLocalizations.of(context)!.successEditProduct),
+                      content: Text(context.strings.successEditProduct),
                     ),
                   );
                   context.read<GetProductsBloc>().add(
@@ -101,8 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (state is EditProductError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content:
-                          Text(AppLocalizations.of(context)!.editProductError),
+                      content: Text(context.strings.editProductError),
                     ),
                   );
                 }
@@ -120,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Scaffold(
                     appBar: AppBar(
                       title: Text(
-                        AppLocalizations.of(context)!.appTitle,
+                        context.strings.appTitle,
                         style: TextStyle(
                           fontSize: 24,
                           color: Theme.of(context).colorScheme.onPrimary,
@@ -138,11 +135,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       items: <BottomNavigationBarItem>[
                         BottomNavigationBarItem(
                           icon: const Icon(Icons.list),
-                          label: AppLocalizations.of(context)!.products,
+                          label: context.strings.products,
                         ),
                         BottomNavigationBarItem(
                           icon: const Icon(Icons.add),
-                          label: AppLocalizations.of(context)!.add,
+                          label: context.strings.add,
                         ),
                       ],
                       currentIndex: _selectedIndex,
