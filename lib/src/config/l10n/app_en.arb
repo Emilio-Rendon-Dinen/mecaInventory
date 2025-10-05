@@ -1,0 +1,9 @@
+{
+    "appTitle": "Meca Inventory",
+    "deleteProductError": "An error occurred while deleting the product",
+    "getProductsError": "An error occurred while retrieving the products",
+    "editProductError": "An error occurred while editing the product",
+    "successEditProduct": "Product edited successfully",
+    "products": "Products",
+    "add": "Add"
+}

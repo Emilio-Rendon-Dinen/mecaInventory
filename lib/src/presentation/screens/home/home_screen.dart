@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meca_inventory/src/config/dependency_injection/get_it.dart';
+import 'package:meca_inventory/src/config/l10n/app_localizations.dart';
 import 'package:meca_inventory/src/domain/use_cases/get_products_use_case.dart';
 import 'package:meca_inventory/src/presentation/screens/add_product/add_product_screen.dart';
 import 'package:meca_inventory/src/presentation/screens/empty_products/empty_products_screen.dart';
@@ -53,8 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (state is DeleteProductSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content:
-                          Text('AppLocalizations.of(context)!.deleteProduct'),
+                      content: Text('Inicio'),
                     ),
                   );
                   context.read<GetProductsBloc>().add(
@@ -65,9 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 if (state is DeleteProductError) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content:
-                            Text('Ocurrio un error al eliminar el producto')),
+                    SnackBar(
+                      content: Text(
+                          AppLocalizations.of(context)!.deleteProductError),
+                    ),
                   );
                 }
               },
@@ -76,9 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
               listener: (context, state) {
                 if (state is GetProductsError) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content:
-                            Text('Ocurrio un error al obtener los productos')),
+                    SnackBar(
+                      content:
+                          Text(AppLocalizations.of(context)!.getProductsError),
+                    ),
                   );
                 }
               },
@@ -87,8 +89,10 @@ class _HomeScreenState extends State<HomeScreen> {
               listener: (context, state) {
                 if (state is EditProductSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Producto editado correctamente')),
+                    SnackBar(
+                      content: Text(
+                          AppLocalizations.of(context)!.successEditProduct),
+                    ),
                   );
                   context.read<GetProductsBloc>().add(
                         UpdateProductInListEvent(updatedProduct: state.product),
@@ -96,9 +100,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 if (state is EditProductError) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content:
-                            Text('Ocurrio un error al editar el producto')),
+                    SnackBar(
+                      content:
+                          Text(AppLocalizations.of(context)!.editProductError),
+                    ),
                   );
                 }
               },
@@ -115,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Scaffold(
                     appBar: AppBar(
                       title: Text(
-                        'AppLocalizations.of(context)!.appTitle',
+                        AppLocalizations.of(context)!.appTitle,
                         style: TextStyle(
                           fontSize: 24,
                           color: Theme.of(context).colorScheme.onPrimary,
@@ -133,11 +138,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       items: <BottomNavigationBarItem>[
                         BottomNavigationBarItem(
                           icon: const Icon(Icons.list),
-                          label: 'AppLocalizations.of(context)!.products',
+                          label: AppLocalizations.of(context)!.products,
                         ),
                         BottomNavigationBarItem(
                           icon: const Icon(Icons.add),
-                          label: 'AppLocalizations.of(context)!.add',
+                          label: AppLocalizations.of(context)!.add,
                         ),
                       ],
                       currentIndex: _selectedIndex,

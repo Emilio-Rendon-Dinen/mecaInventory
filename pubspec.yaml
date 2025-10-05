@@ -20,7 +20,7 @@ dependencies:
   google_fonts: ^6.2.1
   permission_handler: ^12.0.1
   device_info_plus: ^11.5.0
-  intl: ^0.20.2
+  intl: any
   flutter_localizations:
     sdk: flutter
 
