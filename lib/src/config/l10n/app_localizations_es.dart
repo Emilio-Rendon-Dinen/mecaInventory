@@ -55,4 +55,37 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get emptyProducts => 'No hay productos';
+
+  @override
+  String get addProductError => 'Ocurrio un error al agregar el producto';
+
+  @override
+  String get addFirstProduct => 'Agrega tu primer producto';
+
+  @override
+  String get name => 'Nombre';
+
+  @override
+  String get description => 'Descripcion';
+
+  @override
+  String get buyCost => 'Costo de compra';
+
+  @override
+  String get initialQuantity => 'Cantidad inicial';
+
+  @override
+  String get productImage => 'Foto del producto';
+
+  @override
+  String get validNumber => 'Por favor ingresa un numero valido';
+
+  @override
+  String get validValue => 'Por favor ingresa un valor valido';
+
+  @override
+  String get validDescription => 'Por favor ingresa una descripcion';
+
+  @override
+  String get addName => 'Por favor ingresa un nombre';
 }

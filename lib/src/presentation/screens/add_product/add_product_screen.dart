@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meca_inventory/src/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/src/config/navigation/navigation.dart';
+import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 import 'package:meca_inventory/src/domain/use_cases/add_product_use_case.dart';
 import 'package:meca_inventory/src/presentation/screens/add_product/blocs/add_products_bloc.dart';
 import 'package:meca_inventory/src/presentation/screens/add_product/widgets/image_picker_button.dart';
@@ -61,7 +62,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
             );
           } else if (state is AddProductsError) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Error al agregar producto')),
+              SnackBar(
+                content: Text(context.strings.addProductError),
+              ),
             );
           }
         },
@@ -75,7 +78,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ? null
                   : AppBar(
                       title: Text(
-                        'Agrega tu primer producto',
+                        context.strings.addFirstProduct,
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.onPrimary),
                       ),
@@ -90,9 +93,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Nombre",
-                            style: TextStyle(
+                          Text(
+                            context.strings.name,
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -103,15 +106,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Por favor ingrese un nombre';
+                                return context.strings.addName;
                               }
                               return null;
                             },
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            "Descripción",
-                            style: TextStyle(
+                          Text(
+                            context.strings.description,
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -123,15 +126,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Por favor ingrese una descripción';
+                                return context.strings.validDescription;
                               }
                               return null;
                             },
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            "Costo de compra",
-                            style: TextStyle(
+                          Text(
+                            context.strings.buyCost,
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -146,19 +149,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Por favor ingrese un valor';
+                                return context.strings.validValue;
                               }
                               final cost = num.tryParse(value);
                               if (cost == 0) {
-                                return 'Por favor ingrese un número válido';
+                                return context.strings.validNumber;
                               }
                               return null;
                             },
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            "Cantidad inicial",
-                            style: TextStyle(
+                          Text(
+                            context.strings.initialQuantity,
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -173,19 +176,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Por favor ingrese un valor';
+                                return context.strings.validValue;
                               }
                               final quantity = num.tryParse(value);
                               if (quantity == 0) {
-                                return 'Por favor ingrese un número válido';
+                                return context.strings.validNumber;
                               }
                               return null;
                             },
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            "Foto del producto",
-                            style: TextStyle(
+                          Text(
+                            context.strings.productImage,
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -225,7 +228,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           );
                     }
                   },
-                  label: const Text("Agregar"),
+                  label: Text(context.strings.add),
                 ),
               ),
             );

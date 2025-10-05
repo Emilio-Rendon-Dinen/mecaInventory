@@ -181,6 +181,72 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No hay productos'**
   String get emptyProducts;
+
+  /// No description provided for @addProductError.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrio un error al agregar el producto'**
+  String get addProductError;
+
+  /// No description provided for @addFirstProduct.
+  ///
+  /// In es, this message translates to:
+  /// **'Agrega tu primer producto'**
+  String get addFirstProduct;
+
+  /// No description provided for @name.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get name;
+
+  /// No description provided for @description.
+  ///
+  /// In es, this message translates to:
+  /// **'Descripcion'**
+  String get description;
+
+  /// No description provided for @buyCost.
+  ///
+  /// In es, this message translates to:
+  /// **'Costo de compra'**
+  String get buyCost;
+
+  /// No description provided for @initialQuantity.
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad inicial'**
+  String get initialQuantity;
+
+  /// No description provided for @productImage.
+  ///
+  /// In es, this message translates to:
+  /// **'Foto del producto'**
+  String get productImage;
+
+  /// No description provided for @validNumber.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingresa un numero valido'**
+  String get validNumber;
+
+  /// No description provided for @validValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingresa un valor valido'**
+  String get validValue;
+
+  /// No description provided for @validDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingresa una descripcion'**
+  String get validDescription;
+
+  /// No description provided for @addName.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingresa un nombre'**
+  String get addName;
 }
 
 class _AppLocalizationsDelegate

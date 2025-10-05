@@ -42,5 +42,16 @@
         }
     }},
     "addProducts": "Add products",
-    "emptyProducts": "No products available"
+    "emptyProducts": "No products available",
+    "addProductError": "An error occurred while adding the product",
+    "addFirstProduct": "Add your first product",
+    "name": "Name",
+    "description": "Description",
+    "buyCost": "Purchase cost",
+    "initialQuantity": "Initial quantity",
+    "productImage": "Product image",
+    "validNumber": "Please enter a valid number",
+    "validValue": "Please enter a valid value",
+    "validDescription": "Please enter a description",
+    "addName": "Please enter a name"
 }

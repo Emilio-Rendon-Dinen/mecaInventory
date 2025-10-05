@@ -43,5 +43,16 @@
         }
     },
     "addProducts": "Agregar productos",
-    "emptyProducts": "No hay productos"
+    "emptyProducts": "No hay productos",
+    "addProductError": "Ocurrio un error al agregar el producto",
+    "addFirstProduct": "Agrega tu primer producto",
+    "name": "Nombre",
+    "description": "Descripcion",
+    "buyCost": "Costo de compra",
+    "initialQuantity": "Cantidad inicial",
+    "productImage": "Foto del producto",
+    "validNumber": "Por favor ingresa un numero valido",
+    "validValue": "Por favor ingresa un valor valido",
+    "validDescription": "Por favor ingresa una descripcion",
+    "addName": "Por favor ingresa un nombre"
 }

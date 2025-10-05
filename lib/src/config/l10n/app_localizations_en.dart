@@ -57,4 +57,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyProducts => 'No products available';
+
+  @override
+  String get addProductError => 'An error occurred while adding the product';
+
+  @override
+  String get addFirstProduct => 'Add your first product';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get buyCost => 'Purchase cost';
+
+  @override
+  String get initialQuantity => 'Initial quantity';
+
+  @override
+  String get productImage => 'Product image';
+
+  @override
+  String get validNumber => 'Please enter a valid number';
+
+  @override
+  String get validValue => 'Please enter a valid value';
+
+  @override
+  String get validDescription => 'Please enter a description';
+
+  @override
+  String get addName => 'Please enter a name';
 }
