@@ -71,5 +71,11 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "currentStock": "Stock actual:",
+    "usedQuantity": "Ingresa la cantidad utilizada",
+    "addQuantity": "Por favor ingrese una cantidad",
+    "addQuantityValidation": "Por favor ingrese una cantidad valida",
+    "restock": "Reabastecer",
+    "reduceStock": "Reducir stock"
 }

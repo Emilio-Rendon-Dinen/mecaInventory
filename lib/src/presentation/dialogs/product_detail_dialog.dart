@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 import 'package:meca_inventory/src/presentation/screens/restock_product/restock_product_screen.dart';
 import 'package:meca_inventory/src/presentation/ui_models/product_ui_model.dart';
 
@@ -54,7 +55,7 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
             const SizedBox(height: 10),
             Row(
               children: [
-                const Text("Stock actual: "),
+                Text(context.strings.currentStock),
                 Text('${product.currentQuantity}'),
               ],
             ),
@@ -67,26 +68,26 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                 ],
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Ingresa la cantidad utilizada',
-                  hintStyle: TextStyle(
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  hintText: context.strings.usedQuantity,
+                  hintStyle: const TextStyle(
                     fontSize: 12,
                     color: Colors.grey,
                   ),
-                  labelText: 'Ingresa la cantidad utilizada',
-                  labelStyle: TextStyle(
+                  labelText: context.strings.usedQuantity,
+                  labelStyle: const TextStyle(
                     fontSize: 12,
                   ),
                   floatingLabelBehavior: FloatingLabelBehavior.auto,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor ingrese una cantidad';
+                    return context.strings.addQuantity;
                   }
                   final quantity = num.tryParse(value);
                   if (quantity == 0) {
-                    return 'Por favor ingrese una cantidad válida';
+                    return context.strings.addQuantityValidation;
                   }
                   return null;
                 },
@@ -112,7 +113,7 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
               ),
             );
           },
-          child: const Text("Reabastecer"),
+          child: Text(context.strings.restock),
         ),
         FilledButton(
           onPressed: () {
@@ -137,7 +138,7 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
               Navigator.pop(context);
             }
           },
-          child: const Text("Reducir stock"),
+          child: Text(context.strings.reduceStock),
         )
       ],
     );

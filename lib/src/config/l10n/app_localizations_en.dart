@@ -116,4 +116,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String currentQuantity(int currentQuantity) {
     return 'Current quantity: $currentQuantity';
   }
+
+  @override
+  String get currentStock => 'Current stock:';
+
+  @override
+  String get usedQuantity => 'Enter the quantity used';
+
+  @override
+  String get addQuantity => 'Please enter a quantity';
+
+  @override
+  String get addQuantityValidation => 'Please enter a valid quantity';
+
+  @override
+  String get restock => 'Restock';
+
+  @override
+  String get reduceStock => 'Reduce stock';
 }

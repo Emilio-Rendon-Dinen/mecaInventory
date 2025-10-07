@@ -295,6 +295,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Cantidad actual: {currentQuantity}'**
   String currentQuantity(int currentQuantity);
+
+  /// No description provided for @currentStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Stock actual:'**
+  String get currentStock;
+
+  /// No description provided for @usedQuantity.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresa la cantidad utilizada'**
+  String get usedQuantity;
+
+  /// No description provided for @addQuantity.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingrese una cantidad'**
+  String get addQuantity;
+
+  /// No description provided for @addQuantityValidation.
+  ///
+  /// In es, this message translates to:
+  /// **'Por favor ingrese una cantidad valida'**
+  String get addQuantityValidation;
+
+  /// No description provided for @restock.
+  ///
+  /// In es, this message translates to:
+  /// **'Reabastecer'**
+  String get restock;
+
+  /// No description provided for @reduceStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Reducir stock'**
+  String get reduceStock;
 }
 
 class _AppLocalizationsDelegate
