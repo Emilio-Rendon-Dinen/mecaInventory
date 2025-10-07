@@ -277,6 +277,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Agregar imagen del producto'**
   String get addProductImage;
+
+  /// No description provided for @save.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get save;
+
+  /// No description provided for @enterInventory.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresar inventario'**
+  String get enterInventory;
+
+  /// Cantidad actual del producto
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad actual: {currentQuantity}'**
+  String currentQuantity(int currentQuantity);
 }
 
 class _AppLocalizationsDelegate

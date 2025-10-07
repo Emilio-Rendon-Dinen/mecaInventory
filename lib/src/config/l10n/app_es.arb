@@ -59,5 +59,17 @@
     "takePhoto": "Tomar foto",
     "permissionDenied": "Permiso denegado",
     "errorSelectingImage": "Error al seleccionar la imagen",
-    "addProductImage": "Agregar imagen del producto"
+    "addProductImage": "Agregar imagen del producto",
+    "save": "Guardar",
+    "enterInventory": "Ingresar inventario",
+    "currentQuantity": "Cantidad actual: {currentQuantity}",
+    "@currentQuantity": {
+        "description": "Cantidad actual del producto",
+        "placeholders": {
+            "currentQuantity": {
+                "type": "int",
+                "example": "5"
+            }
+        }
+    }
 }

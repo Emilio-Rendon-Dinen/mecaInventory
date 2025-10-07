@@ -105,4 +105,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addProductImage => 'Add product image';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get enterInventory => 'Enter inventory';
+
+  @override
+  String currentQuantity(int currentQuantity) {
+    return 'Current quantity: $currentQuantity';
+  }
 }

@@ -58,5 +58,17 @@
     "takePhoto": "Take photo",
     "permissionDenied": "Permission denied",
     "errorSelectingImage": "Error selecting image",
-    "addProductImage": "Add product image"
+    "addProductImage": "Add product image",
+    "save": "Save",
+    "enterInventory": "Enter inventory",
+    "currentQuantity": "Current quantity: {currentQuantity}",
+    "@currentQuantity": {
+        "description": "Current quantity displayed when restocking a product",
+        "placeholders": {
+            "currentQuantity": {
+                "type": "int",
+                "example": "5"
+            }
+        }
+    }
 }

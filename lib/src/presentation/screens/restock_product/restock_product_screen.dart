@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meca_inventory/src/config/dependency_injection/get_it.dart';
 import 'package:meca_inventory/src/config/navigation/navigation.dart';
+import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 import 'package:meca_inventory/src/domain/use_cases/edit_product_use_case.dart';
 import 'package:meca_inventory/src/presentation/screens/add_product/widgets/image_picker_button.dart';
 import 'package:meca_inventory/src/presentation/screens/home/home_screen.dart';
@@ -47,8 +48,8 @@ class _RestockProductScreenState extends State<RestockProductScreen> {
                 );
               } else if (state is EditProductError) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Error al agregar producto'),
+                  SnackBar(
+                    content: Text(context.strings.editProductError),
                   ),
                 );
               }
@@ -101,7 +102,10 @@ class _RestockProductScreenState extends State<RestockProductScreen> {
                             child: Column(
                               children: [
                                 Text(
-                                    'Cantidad actual: ${product.currentQuantity}'),
+                                  context.strings.currentQuantity(
+                                      product.currentQuantity ?? 0),
+                                  style: const TextStyle(fontSize: 16),
+                                ),
                                 const SizedBox(height: 12),
                                 TextFormField(
                                   keyboardType: TextInputType.number,
@@ -109,17 +113,17 @@ class _RestockProductScreenState extends State<RestockProductScreen> {
                                   inputFormatters: [
                                     FilteringTextInputFormatter.digitsOnly,
                                   ],
-                                  decoration: const InputDecoration(
-                                    labelText: 'Ingresar inventario',
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    labelText: context.strings.enterInventory,
+                                    border: const OutlineInputBorder(),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Por favor ingrese un valor';
+                                      return context.strings.validValue;
                                     }
                                     final quantity = num.tryParse(value);
                                     if (quantity == null || quantity <= 0) {
-                                      return 'Por favor ingrese un número válido';
+                                      return context.strings.validNumber;
                                     }
                                     return null;
                                   },
@@ -159,7 +163,7 @@ class _RestockProductScreenState extends State<RestockProductScreen> {
                                               );
                                         }
                                       },
-                                      child: const Text('Guardar'),
+                                      child: Text(context.strings.save),
                                     ),
                                   ],
                                 ),
