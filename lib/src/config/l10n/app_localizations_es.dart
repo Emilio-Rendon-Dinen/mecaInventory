@@ -132,4 +132,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get reduceStock => 'Reducir stock';
+
+  @override
+  String get availableStock => 'Stock disponible';
+
+  @override
+  String get lowStock => 'Stock bajo';
+
+  @override
+  String get outOfStock => 'Agotado';
+
+  @override
+  String get criticalStock => 'Stock crítico';
 }

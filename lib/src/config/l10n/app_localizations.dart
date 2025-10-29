@@ -331,6 +331,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Reducir stock'**
   String get reduceStock;
+
+  /// No description provided for @availableStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Stock disponible'**
+  String get availableStock;
+
+  /// No description provided for @lowStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Stock bajo'**
+  String get lowStock;
+
+  /// No description provided for @outOfStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Agotado'**
+  String get outOfStock;
+
+  /// No description provided for @criticalStock.
+  ///
+  /// In es, this message translates to:
+  /// **'Stock crítico'**
+  String get criticalStock;
 }
 
 class _AppLocalizationsDelegate

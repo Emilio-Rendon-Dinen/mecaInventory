@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meca_inventory/src/config/utils/build_context_localizations.dart';
 
 enum StockStatus {
   fullStock,
@@ -8,16 +9,16 @@ enum StockStatus {
 }
 
 extension StockStatusExtension on StockStatus {
-  String get stringValue {
+  String stringValue(BuildContext context) {
     switch (this) {
       case StockStatus.fullStock:
-        return "Stock disponible";
+        return context.strings.availableStock;
       case StockStatus.lowStock:
-        return "Stock bajo";
+        return context.strings.lowStock;
       case StockStatus.criticStock:
-        return "Stock crítico";
+        return context.strings.criticalStock;
       case StockStatus.emptyStock:
-        return "Sin stock";
+        return context.strings.outOfStock;
     }
   }
 

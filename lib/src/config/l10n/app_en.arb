@@ -76,5 +76,9 @@
     "addQuantity": "Please enter a quantity",
     "addQuantityValidation": "Please enter a valid quantity",
     "restock": "Restock",
-    "reduceStock": "Reduce stock"
+    "reduceStock": "Reduce stock",
+    "availableStock": "Available stock",
+    "lowStock": "Low stock",
+    "outOfStock": "Out of stock",
+    "criticalStock": "Critical stock"
 }

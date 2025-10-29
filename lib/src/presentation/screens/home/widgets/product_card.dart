@@ -106,7 +106,7 @@ class ProductCard extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            product.quantityStatus.stringValue,
+                            product.quantityStatus.stringValue(context),
                             style: TextStyle(
                                 color: product.quantityStatus.colorValue),
                           ),
