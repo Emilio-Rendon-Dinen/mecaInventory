@@ -129,7 +129,6 @@ class _ProductDetailDialogState extends State<ProductDetailDialog> {
                 cost: product.cost,
                 initialQuantity: product.initialQuantity,
                 currentQuantity: updatedCurrentQuantity,
-                categoryId: product.categoryId,
                 image: product.image,
                 hasImage: product.hasImage,
               );

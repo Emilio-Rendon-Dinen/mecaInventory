@@ -219,7 +219,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                         initialQuantityController.text) ??
                                     0,
                                 image: productImage,
-                                categoryId: 1,
                                 id: null,
                                 currentQuantity: null,
                               ),

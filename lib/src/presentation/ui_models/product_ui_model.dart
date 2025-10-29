@@ -8,7 +8,6 @@ class ProductUIModel {
   final String name;
   final String description;
   final String cost;
-  final int categoryId;
   final int initialQuantity;
   final int? currentQuantity;
   final Uint8List? image;
@@ -16,7 +15,6 @@ class ProductUIModel {
 
   const ProductUIModel({
     this.id,
-    required this.categoryId,
     required this.name,
     required this.cost,
     required this.description,
@@ -34,7 +32,6 @@ class ProductUIModel {
       cost: product.cost,
       initialQuantity: product.initialQuantity,
       currentQuantity: product.currentQuantity,
-      categoryId: product.categoryId,
       image: product.image,
       hasImage: product.image.isNotEmpty,
     );
@@ -48,7 +45,6 @@ class ProductUIModel {
       cost: cost,
       initialQuantity: initialQuantity,
       currentQuantity: currentQuantity ?? initialQuantity,
-      categoryId: categoryId,
       image: image ?? Uint8List(0),
     );
   }
@@ -60,16 +56,5 @@ class ProductUIModel {
     if (qty < initialQuantity * 0.2) return StockStatus.criticStock;
     if (qty < initialQuantity * 0.5) return StockStatus.lowStock;
     return StockStatus.fullStock;
-  }
-
-  String get categoryName {
-    switch (categoryId) {
-      case 1:
-        return 'Solidos';
-      case 2:
-        return 'Liquidos';
-      default:
-        return '';
-    }
   }
 }

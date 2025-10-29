@@ -23,7 +23,6 @@ class AddProductImplementation implements AddProductsRepository {
             'cost': productModel.cost,
             'initial_quantity': productModel.initialQuantity,
             'current_quantity': productModel.initialQuantity,
-            'category_id': productModel.categoryId,
             'image': productModel.image,
           },
           conflictAlgorithm: ConflictAlgorithm.replace,

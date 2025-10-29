@@ -97,9 +97,6 @@ class ProductCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            context.strings.cardCategory(product.categoryName),
-                          ),
-                          Text(
                             context.strings.cardCost(product.cost),
                           ),
                           Text(

@@ -6,7 +6,6 @@ import 'package:meca_inventory/src/domain/entities/product.dart';
 class ProductModel extends Product {
   const ProductModel({
     required super.id,
-    required super.categoryId,
     required super.name,
     required super.description,
     required super.initialQuantity,
@@ -21,7 +20,6 @@ class ProductModel extends Product {
     Map<String, dynamic> json,
   ) : super(
           id: json.getInteger('id'),
-          categoryId: json.getInteger('category_id'),
           description: json.getString('description'),
           name: json.getString('name'),
           cost: json.getString('cost'),
@@ -62,7 +60,6 @@ class ProductModel extends Product {
           cost: product.cost,
           initialQuantity: product.initialQuantity,
           currentQuantity: product.currentQuantity,
-          categoryId: product.categoryId,
           image: product.image,
         );
 
@@ -70,7 +67,6 @@ class ProductModel extends Product {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'category_id': categoryId,
       'name': name,
       'description': description,
       'cost': cost,

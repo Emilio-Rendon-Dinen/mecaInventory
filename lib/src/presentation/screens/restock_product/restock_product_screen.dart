@@ -149,7 +149,6 @@ class _RestockProductScreenState extends State<RestockProductScreen> {
                                                 ? newQuantity
                                                 : product.initialQuantity,
                                             currentQuantity: newQuantity,
-                                            categoryId: product.categoryId,
                                             image: product.image,
                                             hasImage: product.hasImage,
                                           );
