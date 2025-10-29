@@ -39,7 +39,6 @@ class SqlHelper {
         version: 1,
         onDowngrade: onDatabaseDowngradeDelete,
         onCreate: _onCreate,
-        onConfigure: _onConfigure,
         onOpen: _onOpen,
       );
     });
@@ -47,30 +46,16 @@ class SqlHelper {
     return _database;
   }
 
-  Future _onConfigure(Database db) async {
-    //Si intentas eliminar un campo, también eliminará automáticamente las órdenes asociadas gracias a la opción ON DELETE CASCADE.
-    await db.execute("PRAGMA foreign_keys = ON");
-  }
-
-  Future _onOpen(Database db) async {}
+  Future<void> _onOpen(Database db) async {}
 
   void _error(dynamic error) {
     print('LocalDB -> Error:$error');
   }
 
-  Future _onCreate(Database db, int version) async {
+  Future<void> _onCreate(Database db, int version) async {
     print('LocalDB -> Creating database version $version');
     await db.transaction(
       (txn) async {
-        await txn
-            .execute(
-              'CREATE TABLE IF NOT EXISTS categories ('
-              'id INTEGER PRIMARY KEY AUTOINCREMENT, '
-              'name TEXT NOT NULL'
-              ')',
-            )
-            .catchError(_error);
-
         await txn
             .execute(
               'CREATE TABLE IF NOT EXISTS products ('
@@ -80,22 +65,11 @@ class SqlHelper {
               'cost TEXT, '
               'initial_quantity INTEGER NOT NULL, '
               'current_quantity INTEGER NOT NULL, '
-              'category_id INTEGER NOT NULL, '
-              'image BLOB, ' // Esto es igual a List<int>
-              'FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE'
+              'image BLOB ' // Esto es igual a List<int>
               ')',
             )
             .catchError(_error);
-
-        await _insertIntoCategoriesQuery(txn);
       },
     );
-  }
-
-  Future<void> _insertIntoCategoriesQuery(Transaction txn) async {
-    var categoryBactch = txn.batch();
-    categoryBactch.insert('categories', {'name': 'solidos'});
-    categoryBactch.insert('categories', {'name': 'liquidos'});
-    await categoryBactch.commit();
   }
 }
